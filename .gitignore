@@ -1,0 +1,85 @@
+# ──────────────────────────────────────────────────────────────────────
+# NFSMW reverse-engineering project — .gitignore
+# Keep the repo tight: docs + mods + tools + scripts only.
+# Exclude all game files, build artifacts, working dumps, and binaries.
+# ──────────────────────────────────────────────────────────────────────
+
+# Game installer & extracted files (copyrighted, not redistributable)
+extracted/
+Need*for*Speed*Most*Wanted*Repack*
+*.bin
+*.exe
+*.dll
+!docs/sdk_addrs.json
+!docs/sdk_enums.json
+!docs/sdk_structs.json
+!docs/attrib_table.json
+!docs/attribute_cracks_verified.json
+!docs/wave6_cracks.json
+
+# Ghidra project files (huge, binary, machine-specific)
+nfs.gpr
+nfs.lock
+nfs.lock~
+nfs.rep
+nfs.rep.backup-*
+*.gpr
+*.rep
+*.rep.backup-*
+
+# Build artifacts
+*.o
+*.obj
+*.a
+*.so
+*.dylib
+*.dll
+*.asi
+*.lib
+mods/*/build/
+mods/*/dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.venv/
+venv/
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Working dumps + intermediate cracks (regenerable from scripts)
+/tmp/
+**/working/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Claude Code local settings (machine-specific)
+.claude/
+
+# Repack notes (third-party repacker's notes, not our content)
+Repack Notes.txt
+
+# Older snapshot of renames — superseded by docs/renames.csv
+speed_renames.txt
+
+# Allow specific game-data exclusions to still be in tools/ since they're scripts:
+!tools/**/*.py
+!tools/**/Makefile
+!tools/**/README.md
+
+# Mod build outputs — keep source, exclude binaries
+mods/**/*.exe
+mods/**/*.asi
+!mods/*/README.md
+!mods/*/Makefile
+!mods/*/*.c
+!mods/*/*.cpp
+!mods/*/*.h

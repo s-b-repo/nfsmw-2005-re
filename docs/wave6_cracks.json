@@ -1,0 +1,152 @@
+{
+  "new_cracks": {
+    "0x0A91596D": [
+      "InitialSpeed",
+      "Float"
+    ],
+    "0x0FA46807": [
+      "MinScale",
+      "Float"
+    ],
+    "0x2B1F54F6": [
+      "PursuitRace",
+      "Bool"
+    ],
+    "0x3A5970F4": [
+      "forceMultiplier",
+      "Float"
+    ],
+    "0x3E9156CA": [
+      "Template",
+      "Bool"
+    ],
+    "0x40E94F86": [
+      "SELECTABLE",
+      "Bool"
+    ],
+    "0x4C141ED7": [
+      "HeightStart",
+      "Float"
+    ],
+    "0x5AAB860F": [
+      "EventSequencer",
+      "StringKey"
+    ],
+    "0x6319B692": [
+      "TrafficPattern",
+      "Text"
+    ],
+    "0x665F4D74": [
+      "TILTING",
+      "Bool"
+    ],
+    "0x6BBC13EE": [
+      "LengthStart",
+      "Float"
+    ],
+    "0x6DF0ABFE": [
+      "RandomOpponent",
+      "Bool"
+    ],
+    "0x7585F041": [
+      "TimeLimit",
+      "Float"
+    ],
+    "0x777ECE27": [
+      "KnockoutTime",
+      "Float"
+    ],
+    "0x7C11C52E": [
+      "RaceLength",
+      "Float"
+    ],
+    "0x7F8EEA1A": [
+      "STIFFNESS",
+      "Float"
+    ],
+    "0x811C6606": [
+      "TRAFFIC_SPEED",
+      "Float"
+    ],
+    "0x9CA1C8F9": [
+      "CollectionName",
+      "Text"
+    ],
+    "0x9E8910EF": [
+      "message_id",
+      "UInt32"
+    ],
+    "0xA6F789CB": [
+      "damageMultiplier",
+      "Float"
+    ],
+    "0xAA27E71C": [
+      "DefaultPresetRide",
+      "Text"
+    ],
+    "0xABA86E60": [
+      "emittergroup",
+      "RefSpec"
+    ],
+    "0xB2AC32C7": [
+      "FireOnExit",
+      "Bool"
+    ],
+    "0xBF2FDB5C": [
+      "SpawnTime",
+      "Float"
+    ],
+    "0xBF49A7D9": [
+      "BankName",
+      "StringKey"
+    ],
+    "0xC0EEB909": [
+      "PlayerCarType",
+      "Text"
+    ],
+    "0xCE4261AC": [
+      "OneShot",
+      "Bool"
+    ],
+    "0xD686D61E": [
+      "CopSpawnType",
+      "Text"
+    ],
+    "0xD8165518": [
+      "NumParticlesVariance",
+      "Float"
+    ],
+    "0xDA5F19F9": [
+      "BEHAVIORS",
+      "StringKey"
+    ],
+    "0xDC943CC9": [
+      "NumParticles",
+      "Float"
+    ],
+    "0xEFB4BB64": [
+      "LifeVariance",
+      "Float"
+    ],
+    "0xF5A03629": [
+      "MaxHeatLevel",
+      "Float"
+    ],
+    "0xF7649E63": [
+      "MaxSize",
+      "Float"
+    ],
+    "0xF833C06F": [
+      "CarType",
+      "Text"
+    ]
+  },
+  "counts_by_type": {
+    "Text": 6,
+    "RefSpec": 1,
+    "Float": 17,
+    "Bool": 7,
+    "StringKey": 3,
+    "UInt32": 1
+  }
+}

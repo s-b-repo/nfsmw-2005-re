@@ -1,0 +1,3368 @@
+[
+  {
+    "name": "TriggerTypes",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Undefined",
+        "expr": null
+      },
+      {
+        "name": "Standard",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "TriggerFlags",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Enabled",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "OneShot",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "PlayerActivated",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "AIActivated",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "ExplosionActivated",
+        "expr": "1 << 4"
+      },
+      {
+        "name": "VehicleActivated",
+        "expr": "1 << 5"
+      },
+      {
+        "name": "BodyActivated",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "TimeActivated",
+        "expr": "1 << 7"
+      },
+      {
+        "name": "UnManaged",
+        "expr": "1 << 8"
+      },
+      {
+        "name": "PathAnimActivated",
+        "expr": "1 << 9"
+      },
+      {
+        "name": "Silencable",
+        "expr": "1 << 10"
+      },
+      {
+        "name": "UseEntry",
+        "expr": "1 << 11"
+      },
+      {
+        "name": "NonUpYVec",
+        "expr": "1 << 12"
+      },
+      {
+        "name": "PlayerCharActivated",
+        "expr": "1 << 13"
+      },
+      {
+        "name": "DebugOnly",
+        "expr": "1 << 14"
+      },
+      {
+        "name": "FireOnExit",
+        "expr": "1 << 15"
+      },
+      {
+        "name": "HumanActivated",
+        "expr": "1 << 16"
+      },
+      {
+        "name": "CopActivated",
+        "expr": "1 << 17"
+      },
+      {
+        "name": "FireOnEntry",
+        "expr": "1 << 18"
+      }
+    ]
+  },
+  {
+    "name": "Type",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Tires",
+        "expr": null
+      },
+      {
+        "name": "Brakes",
+        "expr": null
+      },
+      {
+        "name": "Chassis",
+        "expr": null
+      },
+      {
+        "name": "Transmission",
+        "expr": null
+      },
+      {
+        "name": "Engine",
+        "expr": null
+      },
+      {
+        "name": "Induction",
+        "expr": null
+      },
+      {
+        "name": "NOS",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "CollisionType",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "Object",
+        "expr": null
+      },
+      {
+        "name": "World",
+        "expr": null
+      },
+      {
+        "name": "Ground",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "CarSlotId",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Base",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_FrontWindow",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_Body",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_CopLights",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_CopSpoiler",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_FrontWheel",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_LeftBrakelight",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RightBrakelight",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_LeftHeadlight",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RightHeadlight",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_Hood",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_Bushguard",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_FrontBumper",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RightDoor",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RightRearDoor",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_Trunk",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RearBumper",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RearKeftWindow",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_FrontLeftWindow",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_FrontRightWindow",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_RearRightWindow",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_LeftDoor",
+        "expr": null
+      },
+      {
+        "name": "DamageModel_LeftRearDoor",
+        "expr": null
+      },
+      {
+        "name": "Body",
+        "expr": null
+      },
+      {
+        "name": "FrontBrake",
+        "expr": null
+      },
+      {
+        "name": "FrontLeftWindow",
+        "expr": null
+      },
+      {
+        "name": "FrontRightWindow",
+        "expr": null
+      },
+      {
+        "name": "FrontWindow",
+        "expr": null
+      },
+      {
+        "name": "Interior",
+        "expr": null
+      },
+      {
+        "name": "LeftBrakelight",
+        "expr": null
+      },
+      {
+        "name": "LeftBrakelightGlass",
+        "expr": null
+      },
+      {
+        "name": "LeftHeadlight",
+        "expr": null
+      },
+      {
+        "name": "LeftHeadlightGlass",
+        "expr": null
+      },
+      {
+        "name": "LeftSideMirror",
+        "expr": null
+      },
+      {
+        "name": "RearBrake",
+        "expr": null
+      },
+      {
+        "name": "RearLeftWindow",
+        "expr": null
+      },
+      {
+        "name": "RearRightWindow",
+        "expr": null
+      },
+      {
+        "name": "RearWindow",
+        "expr": null
+      },
+      {
+        "name": "RightBrakelight",
+        "expr": null
+      },
+      {
+        "name": "RightBrakelightGlass",
+        "expr": null
+      },
+      {
+        "name": "RightHeadlight",
+        "expr": null
+      },
+      {
+        "name": "RightHeadlightGlass",
+        "expr": null
+      },
+      {
+        "name": "RightSideMirror",
+        "expr": null
+      },
+      {
+        "name": "Driver",
+        "expr": null
+      },
+      {
+        "name": "Spoiler",
+        "expr": null
+      },
+      {
+        "name": "UniversalSpoilerBase",
+        "expr": null
+      },
+      {
+        "name": "DamagePlayerModel_Front",
+        "expr": null
+      },
+      {
+        "name": "DamagePlayerModel_FrontLeft",
+        "expr": null
+      },
+      {
+        "name": "DamagePlayerModel_FrontRight",
+        "expr": null
+      },
+      {
+        "name": "DamagePlayerModel_Rear",
+        "expr": null
+      },
+      {
+        "name": "DamagePlayerModel_RearLeft",
+        "expr": null
+      },
+      {
+        "name": "DamagePlayerModel_RearRight",
+        "expr": null
+      },
+      {
+        "name": "Attachment0",
+        "expr": null
+      },
+      {
+        "name": "Attachment1",
+        "expr": null
+      },
+      {
+        "name": "Attachment2",
+        "expr": null
+      },
+      {
+        "name": "Attachment3",
+        "expr": null
+      },
+      {
+        "name": "Attachment4",
+        "expr": null
+      },
+      {
+        "name": "Attachment5",
+        "expr": null
+      },
+      {
+        "name": "Attachment6",
+        "expr": null
+      },
+      {
+        "name": "Attachment7",
+        "expr": null
+      },
+      {
+        "name": "Attachment8",
+        "expr": null
+      },
+      {
+        "name": "Attachment9",
+        "expr": null
+      },
+      {
+        "name": "RoofScoop",
+        "expr": null
+      },
+      {
+        "name": "Hood",
+        "expr": null
+      },
+      {
+        "name": "Headlight",
+        "expr": null
+      },
+      {
+        "name": "Brakelight",
+        "expr": null
+      },
+      {
+        "name": "FrontWheel",
+        "expr": null
+      },
+      {
+        "name": "RearWheel",
+        "expr": null
+      },
+      {
+        "name": "Spinner",
+        "expr": null
+      },
+      {
+        "name": "LicensePlate",
+        "expr": null
+      },
+      {
+        "name": "DecalModel_FrontWindow",
+        "expr": null
+      },
+      {
+        "name": "DecalModel_RearWindow",
+        "expr": null
+      },
+      {
+        "name": "DecalModel_LeftDoor",
+        "expr": null
+      },
+      {
+        "name": "DecalModel_RightDoor",
+        "expr": null
+      },
+      {
+        "name": "DecalModel_LeftQuarter",
+        "expr": null
+      },
+      {
+        "name": "DecalModel_RightQuarter",
+        "expr": null
+      },
+      {
+        "name": "BasePaint",
+        "expr": null
+      },
+      {
+        "name": "VinylLayer",
+        "expr": null
+      },
+      {
+        "name": "PaintRim",
+        "expr": null
+      },
+      {
+        "name": "VinylColour0",
+        "expr": null
+      },
+      {
+        "name": "VinylColour1",
+        "expr": null
+      },
+      {
+        "name": "VinylColour2",
+        "expr": null
+      },
+      {
+        "name": "VinylColour3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow0",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow1",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow2",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow4",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow5",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow6",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_FrontWindow7",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow0",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow1",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow2",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow4",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow5",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow6",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RearWindow7",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor0",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor1",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor2",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor4",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor5",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor_LeftNumber",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor6",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor_RightNumber",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftDoor7",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor0",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor1",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor2",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor4",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor5",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor_LeftNumber",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor6",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor_RightNumber",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightDoor7",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter0",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter1",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter2",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter4",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter5",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter6",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_LeftQuarter7",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex0",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex1",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex2",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex3",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex4",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex5",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex6",
+        "expr": null
+      },
+      {
+        "name": "DecalTexture_RightQuarter_tex7",
+        "expr": null
+      },
+      {
+        "name": "WindowTint",
+        "expr": null
+      },
+      {
+        "name": "CustomHud",
+        "expr": null
+      },
+      {
+        "name": "HudBackingColour",
+        "expr": null
+      },
+      {
+        "name": "HudNeedleColour",
+        "expr": null
+      },
+      {
+        "name": "HudCharacterColour",
+        "expr": null
+      },
+      {
+        "name": "CV",
+        "expr": null
+      },
+      {
+        "name": "WheelManufacturer",
+        "expr": null
+      },
+      {
+        "name": "Misc",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "CarType",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "PORSCHE911TURBO",
+        "expr": null
+      },
+      {
+        "name": "PORSCHECARRERAGT",
+        "expr": null
+      },
+      {
+        "name": "VIPER",
+        "expr": null
+      },
+      {
+        "name": "COPMIDSIZE",
+        "expr": null
+      },
+      {
+        "name": "COPHELI",
+        "expr": null
+      },
+      {
+        "name": "RX8",
+        "expr": null
+      },
+      {
+        "name": "IMPREZAWRX",
+        "expr": null
+      },
+      {
+        "name": "LANCEREVO8",
+        "expr": null
+      },
+      {
+        "name": "MUSTANGGT",
+        "expr": null
+      },
+      {
+        "name": "CAMARO",
+        "expr": null
+      },
+      {
+        "name": "SEMI",
+        "expr": null
+      },
+      {
+        "name": "GTO",
+        "expr": null
+      },
+      {
+        "name": "SLR",
+        "expr": null
+      },
+      {
+        "name": "TRAILERA",
+        "expr": null
+      },
+      {
+        "name": "TRAILERB",
+        "expr": null
+      },
+      {
+        "name": "CORVETTE",
+        "expr": null
+      },
+      {
+        "name": "TRAFHA",
+        "expr": null
+      },
+      {
+        "name": "TRAFSUVA",
+        "expr": null
+      },
+      {
+        "name": "TRAF4DSEDB",
+        "expr": null
+      },
+      {
+        "name": "TRAFFICCOUP",
+        "expr": null
+      },
+      {
+        "name": "TT",
+        "expr": null
+      },
+      {
+        "name": "A3",
+        "expr": null
+      },
+      {
+        "name": "BMWM3GTR",
+        "expr": null
+      },
+      {
+        "name": "SL500",
+        "expr": null
+      },
+      {
+        "name": "PORSCHE997S",
+        "expr": null
+      },
+      {
+        "name": "TRAF4DSEDA",
+        "expr": null
+      },
+      {
+        "name": "TRAF4DSEDC",
+        "expr": null
+      },
+      {
+        "name": "TRAFCAMPER",
+        "expr": null
+      },
+      {
+        "name": "TRAFCEMTR",
+        "expr": null
+      },
+      {
+        "name": "TRAFDMPTR",
+        "expr": null
+      },
+      {
+        "name": "TRAFFIRE",
+        "expr": null
+      },
+      {
+        "name": "TRAFGARB",
+        "expr": null
+      },
+      {
+        "name": "TRAFMINIVAN",
+        "expr": null
+      },
+      {
+        "name": "TRAFNEWS",
+        "expr": null
+      },
+      {
+        "name": "TRAFPICKUPA",
+        "expr": null
+      },
+      {
+        "name": "TRAFSTWAG",
+        "expr": null
+      },
+      {
+        "name": "TRAFVANB",
+        "expr": null
+      },
+      {
+        "name": "TRAFTAXI",
+        "expr": null
+      },
+      {
+        "name": "TRAFCOURT",
+        "expr": null
+      },
+      {
+        "name": "TRAFPIZZA",
+        "expr": null
+      },
+      {
+        "name": "PORSCHE911GT2",
+        "expr": null
+      },
+      {
+        "name": "BMWM3GTRE46",
+        "expr": null
+      },
+      {
+        "name": "TRAFAMB",
+        "expr": null
+      },
+      {
+        "name": "TRAILERLOG",
+        "expr": null
+      },
+      {
+        "name": "TRAILERCON",
+        "expr": null
+      },
+      {
+        "name": "TRAILERCRATE",
+        "expr": null
+      },
+      {
+        "name": "TRAILERCMT",
+        "expr": null
+      },
+      {
+        "name": "IS300",
+        "expr": null
+      },
+      {
+        "name": "MONARO",
+        "expr": null
+      },
+      {
+        "name": "SL65",
+        "expr": null
+      },
+      {
+        "name": "ELISE",
+        "expr": null
+      },
+      {
+        "name": "COPMIDSIZEINT",
+        "expr": null
+      },
+      {
+        "name": "FORDGT",
+        "expr": null
+      },
+      {
+        "name": "ECLIPSEGT",
+        "expr": null
+      },
+      {
+        "name": "SUPRA",
+        "expr": null
+      },
+      {
+        "name": "CORVETTEC6R",
+        "expr": null
+      },
+      {
+        "name": "RX7",
+        "expr": null
+      },
+      {
+        "name": "COPSUV",
+        "expr": null
+      },
+      {
+        "name": "RX8SPEEDT",
+        "expr": null
+      },
+      {
+        "name": "MURCIELAGO",
+        "expr": null
+      },
+      {
+        "name": "A4",
+        "expr": null
+      },
+      {
+        "name": "COPSPORT",
+        "expr": null
+      },
+      {
+        "name": "GTI",
+        "expr": null
+      },
+      {
+        "name": "CAYMANS",
+        "expr": null
+      },
+      {
+        "name": "CLK500",
+        "expr": null
+      },
+      {
+        "name": "CTS",
+        "expr": null
+      },
+      {
+        "name": "DB9",
+        "expr": null
+      },
+      {
+        "name": "GALLARDO",
+        "expr": null
+      },
+      {
+        "name": "COBALTSS",
+        "expr": null
+      },
+      {
+        "name": "BMWM3",
+        "expr": null
+      },
+      {
+        "name": "CLIO",
+        "expr": null
+      },
+      {
+        "name": "COPGHOST",
+        "expr": null
+      },
+      {
+        "name": "COPSUVL",
+        "expr": null
+      },
+      {
+        "name": "COPGTO",
+        "expr": null
+      },
+      {
+        "name": "PUNTO",
+        "expr": null
+      },
+      {
+        "name": "COPGTOGHOST",
+        "expr": null
+      },
+      {
+        "name": "COPSPORTHENCH",
+        "expr": null
+      },
+      {
+        "name": "COPSPORTGHOST",
+        "expr": null
+      },
+      {
+        "name": "CEMTR",
+        "expr": null
+      },
+      {
+        "name": "GARB",
+        "expr": null
+      },
+      {
+        "name": "PIZZA",
+        "expr": null
+      },
+      {
+        "name": "TAXI",
+        "expr": null
+      },
+      {
+        "name": "MINIVAN",
+        "expr": null
+      },
+      {
+        "name": "PICKUPA",
+        "expr": null
+      },
+      {
+        "name": "NONE",
+        "expr": "UINT32_MAX"
+      }
+    ]
+  },
+  {
+    "name": "CarUsageType",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Racing",
+        "expr": null
+      },
+      {
+        "name": "Cop",
+        "expr": null
+      },
+      {
+        "name": "Traffic",
+        "expr": null
+      },
+      {
+        "name": "Wheels",
+        "expr": null
+      },
+      {
+        "name": "Universal",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "DriverClass",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Human",
+        "expr": null
+      },
+      {
+        "name": "Traffic",
+        "expr": null
+      },
+      {
+        "name": "Cop",
+        "expr": null
+      },
+      {
+        "name": "Racer",
+        "expr": null
+      },
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "NIS",
+        "expr": null
+      },
+      {
+        "name": "Remote",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "DriverStyle",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Racing",
+        "expr": null
+      },
+      {
+        "name": "Drag",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eAIDifficultyModifier",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Easy",
+        "expr": null
+      },
+      {
+        "name": "SomewhatEasy",
+        "expr": null
+      },
+      {
+        "name": "Normal",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eCareerUpgradeLevels",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "LevelStock",
+        "expr": null
+      },
+      {
+        "name": "Level1",
+        "expr": null
+      },
+      {
+        "name": "Level2",
+        "expr": null
+      },
+      {
+        "name": "Level3",
+        "expr": null
+      },
+      {
+        "name": "LevelUnique",
+        "expr": null
+      },
+      {
+        "name": "LevelUnspecified",
+        "expr": "UINT32_MAX"
+      }
+    ]
+  },
+  {
+    "name": "eCrossState",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Available",
+        "expr": null
+      },
+      {
+        "name": "Spawned",
+        "expr": null
+      },
+      {
+        "name": "Disabled",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eControllerConfig",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "MinConfig",
+        "expr": null
+      },
+      {
+        "name": "Config1",
+        "expr": null
+      },
+      {
+        "name": "Config2",
+        "expr": null
+      },
+      {
+        "name": "Config3",
+        "expr": null
+      },
+      {
+        "name": "Config4",
+        "expr": null
+      },
+      {
+        "name": "MaxConfig",
+        "expr": null
+      },
+      {
+        "name": "Config5",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eDriftType",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "VsAI",
+        "expr": null
+      },
+      {
+        "name": "Downhill",
+        "expr": null
+      },
+      {
+        "name": "Team",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eFEGameModes",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "Career",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "Challenge",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "QuickRace",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "Online",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "Options",
+        "expr": "1 << 4"
+      },
+      {
+        "name": "Customize",
+        "expr": "1 << 5"
+      },
+      {
+        "name": "Lan",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "ProfileManager",
+        "expr": "1 << 7"
+      },
+      {
+        "name": "CareerManager",
+        "expr": "1 << 8"
+      },
+      {
+        "name": "RapSheet",
+        "expr": "1 << 9"
+      },
+      {
+        "name": "ModeSelect",
+        "expr": "1 << 10"
+      },
+      {
+        "name": "Trailers",
+        "expr": "1 << 11"
+      },
+      {
+        "name": "CarLot",
+        "expr": "1 << 15"
+      },
+      {
+        "name": "Safehouse",
+        "expr": "1 << 16"
+      },
+      {
+        "name": "PostRival",
+        "expr": "1 << 17"
+      },
+      {
+        "name": "BeatGame",
+        "expr": "1 << 18"
+      }
+    ]
+  },
+  {
+    "name": "eImpoundReasons",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "BustedByCross",
+        "expr": null
+      },
+      {
+        "name": "StrikeLimitReached",
+        "expr": null
+      },
+      {
+        "name": "InsufficientFunds",
+        "expr": null
+      },
+      {
+        "name": "Released",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eLoadSaveGame",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Load",
+        "expr": null
+      },
+      {
+        "name": "Save",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eLocationName",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "UpperClass",
+        "expr": null
+      },
+      {
+        "name": "CityCore",
+        "expr": null
+      },
+      {
+        "name": "SuburbanHills",
+        "expr": null
+      },
+      {
+        "name": "IndustrialPark",
+        "expr": null
+      },
+      {
+        "name": "Airport",
+        "expr": null
+      },
+      {
+        "name": "ModeSpecific",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eMiniMapModes",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Static",
+        "expr": null
+      },
+      {
+        "name": "Rotate",
+        "expr": null
+      },
+      {
+        "name": "Off",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eOpponentStrength",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Low",
+        "expr": null
+      },
+      {
+        "name": "Medium",
+        "expr": null
+      },
+      {
+        "name": "High",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eOptionsCategory",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Audio",
+        "expr": null
+      },
+      {
+        "name": "Video",
+        "expr": null
+      },
+      {
+        "name": "PCAdvancedDisplay",
+        "expr": null
+      },
+      {
+        "name": "Gameplay",
+        "expr": null
+      },
+      {
+        "name": "Player",
+        "expr": null
+      },
+      {
+        "name": "Controls",
+        "expr": null
+      },
+      {
+        "name": "EATrax",
+        "expr": null
+      },
+      {
+        "name": "Trailers",
+        "expr": null
+      },
+      {
+        "name": "Credits",
+        "expr": null
+      },
+      {
+        "name": "Online",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "ePlayerList",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "All",
+        "expr": null
+      },
+      {
+        "name": "Local",
+        "expr": null
+      },
+      {
+        "name": "Remote",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "ePlayerSettingsCameras",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Bumper",
+        "expr": null
+      },
+      {
+        "name": "Hood",
+        "expr": null
+      },
+      {
+        "name": "Close",
+        "expr": null
+      },
+      {
+        "name": "Far",
+        "expr": null
+      },
+      {
+        "name": "SuperFar",
+        "expr": null
+      },
+      {
+        "name": "Drift",
+        "expr": null
+      },
+      {
+        "name": "Pursuit",
+        "expr": null
+      },
+      {
+        "name": "Invalid",
+        "expr": "UINT32_MAX"
+      }
+    ]
+  },
+  {
+    "name": "ePostRaceOptions",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "NextRace",
+        "expr": null
+      },
+      {
+        "name": "Quit",
+        "expr": null
+      },
+      {
+        "name": "RestartRace",
+        "expr": null
+      },
+      {
+        "name": "RestartEvent",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "ePursuitStatus",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "InitialChase",
+        "expr": null
+      },
+      {
+        "name": "BackupRequested",
+        "expr": null
+      },
+      {
+        "name": "Cooldown",
+        "expr": null
+      },
+      {
+        "name": "Busted",
+        "expr": null
+      },
+      {
+        "name": "Evaded",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eSplitTimeTypes",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "RaceLeader",
+        "expr": null
+      },
+      {
+        "name": "LapRecord",
+        "expr": null
+      },
+      {
+        "name": "BestLap",
+        "expr": null
+      },
+      {
+        "name": "LastLap",
+        "expr": null
+      },
+      {
+        "name": "Off",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eTrackDifficulty",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Easy",
+        "expr": null
+      },
+      {
+        "name": "Medium",
+        "expr": null
+      },
+      {
+        "name": "Hard",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eTrackDirection",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Forward",
+        "expr": null
+      },
+      {
+        "name": "Backward",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eTransmissionType",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Automatic",
+        "expr": null
+      },
+      {
+        "name": "Manual",
+        "expr": null
+      },
+      {
+        "name": "Sport",
+        "expr": null
+      },
+      {
+        "name": "ManualClutch",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eVehicleParamFlags",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "Spooled",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "SnapToGround",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "NosRemoved",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "CalcPerformance",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "NosAdded",
+        "expr": "1 << 4"
+      }
+    ]
+  },
+  {
+    "name": "eVehicleList",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "All",
+        "expr": null
+      },
+      {
+        "name": "Players",
+        "expr": null
+      },
+      {
+        "name": "AI",
+        "expr": null
+      },
+      {
+        "name": "AIRacers",
+        "expr": null
+      },
+      {
+        "name": "AICops",
+        "expr": null
+      },
+      {
+        "name": "AITraffic",
+        "expr": null
+      },
+      {
+        "name": "Racers",
+        "expr": null
+      },
+      {
+        "name": "Remote",
+        "expr": null
+      },
+      {
+        "name": "Inactive",
+        "expr": null
+      },
+      {
+        "name": "Trailers",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eWorldMapView",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Navigation",
+        "expr": null
+      },
+      {
+        "name": "Event",
+        "expr": null
+      },
+      {
+        "name": "Race",
+        "expr": null
+      },
+      {
+        "name": "Pursuit",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "JunkmanParts",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": "0"
+      },
+      {
+        "name": "Tires",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "Brakes",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "Chassis",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "Transmission",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "Engine",
+        "expr": "1 << 4"
+      },
+      {
+        "name": "Induction",
+        "expr": "1 << 5"
+      },
+      {
+        "name": "NOS",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "All",
+        "expr": "static_cast<std::uint32_t>(Tires) | static_cast<std::uint32_t>(Brakes) | static_cast<std::uint32_t>(Chassis) |\n          static_cast<std::uint32_t>(Transmission) | static_cast<std::uint32_t>(Engine) |\n          static_cast<std::uint32_t>(Induction) | static_cast<std::uint32_t>(NOS)"
+      }
+    ]
+  },
+  {
+    "name": "Region",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "College",
+        "expr": null
+      },
+      {
+        "name": "Coastal",
+        "expr": null
+      },
+      {
+        "name": "City",
+        "expr": null
+      },
+      {
+        "name": "None",
+        "expr": "UINT8_MAX"
+      }
+    ]
+  },
+  {
+    "name": "ID",
+    "header": "Types.h",
+    "members": [
+      {
+        "name": "Front",
+        "expr": null
+      },
+      {
+        "name": "Rear",
+        "expr": null
+      },
+      {
+        "name": "Left",
+        "expr": null
+      },
+      {
+        "name": "Right",
+        "expr": null
+      },
+      {
+        "name": "LeftFront",
+        "expr": null
+      },
+      {
+        "name": "RightFront",
+        "expr": null
+      },
+      {
+        "name": "LeftRear",
+        "expr": null
+      },
+      {
+        "name": "RightRear",
+        "expr": null
+      },
+      {
+        "name": "Top",
+        "expr": null
+      },
+      {
+        "name": "Bottom",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "RaceType",
+    "header": "Types/cFrontendDatabase.h",
+    "members": [
+      {
+        "name": "Point2Point",
+        "expr": null
+      },
+      {
+        "name": "Circuit",
+        "expr": null
+      },
+      {
+        "name": "Drag",
+        "expr": null
+      },
+      {
+        "name": "Knockout",
+        "expr": null
+      },
+      {
+        "name": "Tollbooth",
+        "expr": null
+      },
+      {
+        "name": "SpeedTrap",
+        "expr": null
+      },
+      {
+        "name": "Checkpoint",
+        "expr": null
+      },
+      {
+        "name": "CashGrab",
+        "expr": null
+      },
+      {
+        "name": "Challenge",
+        "expr": null
+      },
+      {
+        "name": "JumpToSpeedTrap",
+        "expr": null
+      },
+      {
+        "name": "JumpToMilestone",
+        "expr": null
+      },
+      {
+        "name": "None",
+        "expr": "UINT32_MAX"
+      }
+    ]
+  },
+  {
+    "name": "eFlags",
+    "header": "Types/WRoadNav.h",
+    "members": [
+      {
+        "name": "CutByObject",
+        "expr": "1"
+      },
+      {
+        "name": "CutFromBehind",
+        "expr": "2"
+      }
+    ]
+  },
+  {
+    "name": "SplineType",
+    "header": "Types/USpline.h",
+    "members": [
+      {
+        "name": "Bezier",
+        "expr": null
+      },
+      {
+        "name": "CatMulRom",
+        "expr": null
+      },
+      {
+        "name": "Invalid",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/RigidBody.h",
+    "members": [
+      {
+        "name": "VSWORLD",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "VSOBJECTS",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "VSGROUND",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "DISABLED",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "ONESIDED",
+        "expr": "1 << 4"
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/RigidBody.h",
+    "members": [
+      {
+        "name": "DISABLED",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "FREEABLE",
+        "expr": "1 << 2"
+      }
+    ]
+  },
+  {
+    "name": "Status",
+    "header": "Types/RigidBody.h",
+    "members": [
+      {
+        "name": "NoTrigger",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "Attached",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "CollisionWorld",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "CollisionObject",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "EnableDrag",
+        "expr": "1 << 5"
+      },
+      {
+        "name": "CheckWorld",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "FixedCG",
+        "expr": "1 << 7"
+      },
+      {
+        "name": "Animating",
+        "expr": "1 << 8"
+      },
+      {
+        "name": "Initiliazed",
+        "expr": "1 << 9"
+      },
+      {
+        "name": "Integrating",
+        "expr": "1 << 10"
+      },
+      {
+        "name": "EnableDragAngular",
+        "expr": "1 << 11"
+      },
+      {
+        "name": "DisableIntegrator",
+        "expr": "1 << 12"
+      },
+      {
+        "name": "ModifyPrims",
+        "expr": "1 << 13"
+      },
+      {
+        "name": "Inactive",
+        "expr": "1 << 14"
+      },
+      {
+        "name": "CollisionGround",
+        "expr": "1 << 15"
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/ResetCar.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "FindRoad",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/RacePreparationInfo.h",
+    "members": [
+      {
+        "name": "NONE",
+        "expr": null
+      },
+      {
+        "name": "RESET_DAMAGE",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "RaceTypes",
+    "header": "Types/RaceParameters.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "SingleRace",
+        "expr": null
+      },
+      {
+        "name": "TimeTrial",
+        "expr": null
+      },
+      {
+        "name": "LapKnockout",
+        "expr": null
+      },
+      {
+        "name": "RaceRnockout",
+        "expr": null
+      },
+      {
+        "name": "Tournament",
+        "expr": null
+      },
+      {
+        "name": "CarShow",
+        "expr": null
+      },
+      {
+        "name": "GetAway",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Path",
+    "header": "Types/Physics.h",
+    "members": [
+      {
+        "name": "Steering",
+        "expr": null
+      },
+      {
+        "name": "Handling",
+        "expr": null
+      },
+      {
+        "name": "Brakes",
+        "expr": null
+      },
+      {
+        "name": "RideHeight",
+        "expr": null
+      },
+      {
+        "name": "Aerodynamics",
+        "expr": null
+      },
+      {
+        "name": "NOS",
+        "expr": null
+      },
+      {
+        "name": "Induction",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "DriveFlags",
+    "header": "Types/IVehicleAI.h",
+    "members": [
+      {
+        "name": "Steer",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "GasBrake",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "Reverse",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "All",
+        "expr": "(std::uint32_t)Steer | (std::uint32_t)GasBrake | (std::uint32_t)Reverse"
+      }
+    ]
+  },
+  {
+    "name": "ForceStopType",
+    "header": "Types/IVehicle.h",
+    "members": [
+      {
+        "name": "ForceStop",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "InstantStop",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "ForceCoast",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "StopOnline",
+        "expr": "1 << 4"
+      }
+    ]
+  },
+  {
+    "name": "GearID",
+    "header": "Types/ITransmission.h",
+    "members": [
+      {
+        "name": "Reverse",
+        "expr": null
+      },
+      {
+        "name": "Neutral",
+        "expr": null
+      },
+      {
+        "name": "First",
+        "expr": null
+      },
+      {
+        "name": "Second",
+        "expr": null
+      },
+      {
+        "name": "Third",
+        "expr": null
+      },
+      {
+        "name": "Fourth",
+        "expr": null
+      },
+      {
+        "name": "Fifth",
+        "expr": null
+      },
+      {
+        "name": "Sixth",
+        "expr": null
+      },
+      {
+        "name": "Seventh",
+        "expr": null
+      },
+      {
+        "name": "Eighth",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "ShiftPotential",
+    "header": "Types/ITransmission.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "Down",
+        "expr": null
+      },
+      {
+        "name": "Up",
+        "expr": null
+      },
+      {
+        "name": "Good",
+        "expr": null
+      },
+      {
+        "name": "Perfect",
+        "expr": null
+      },
+      {
+        "name": "Miss",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "ShiftStatus",
+    "header": "Types/ITransmission.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "Normal",
+        "expr": null
+      },
+      {
+        "name": "Good",
+        "expr": null
+      },
+      {
+        "name": "Perfect",
+        "expr": null
+      },
+      {
+        "name": "Missed",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "BodyFlags",
+    "header": "Types/ISimpleBody.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": "0"
+      },
+      {
+        "name": "SkipSRBCollisions",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "SkipRBCollisions",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "SkipCollisions",
+        "expr": "3"
+      },
+      {
+        "name": "ApplyBasicPhysics",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "LinearMotion",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "OBBCollideWith_RB",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "OBBCollideWith_SRB",
+        "expr": "1 << 7"
+      },
+      {
+        "name": "CanHitTriggers",
+        "expr": "1 << 8"
+      },
+      {
+        "name": "AngularMotion",
+        "expr": "1 << 9"
+      },
+      {
+        "name": "SkipSameTypeCollisions",
+        "expr": "1 << 14"
+      },
+      {
+        "name": "SOBBCollideWith_RB",
+        "expr": "1 << 15"
+      }
+    ]
+  },
+  {
+    "name": "FEngTypes",
+    "header": "Types/IGenericMessage.h",
+    "members": [
+      {
+        "name": "None",
+        "expr": null
+      },
+      {
+        "name": "Type1",
+        "expr": "0x8AB83EDB"
+      },
+      {
+        "name": "Type2",
+        "expr": "0x9D73BC15"
+      },
+      {
+        "name": "Type3",
+        "expr": "0x5230FAF6"
+      },
+      {
+        "name": "Type4",
+        "expr": "0xA19BB14C"
+      },
+      {
+        "name": "Type5",
+        "expr": "0x821E6378"
+      }
+    ]
+  },
+  {
+    "name": "IconDisplayTypes",
+    "header": "Types/IGenericMessage.h",
+    "members": [
+      {
+        "name": "HideIcon",
+        "expr": null
+      },
+      {
+        "name": "ShowIcon",
+        "expr": "0x609F6B15"
+      }
+    ]
+  },
+  {
+    "name": "Priority",
+    "header": "Types/IGenericMessage.h",
+    "members": [
+      {
+        "name": "Priority5",
+        "expr": null
+      },
+      {
+        "name": "Priority4",
+        "expr": null
+      },
+      {
+        "name": "Priority3",
+        "expr": null
+      },
+      {
+        "name": "Priority2",
+        "expr": null
+      },
+      {
+        "name": "Priority1",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Context",
+    "header": "Types/GRaceStatus.h",
+    "members": [
+      {
+        "name": "QuickRace",
+        "expr": null
+      },
+      {
+        "name": "Online",
+        "expr": null
+      },
+      {
+        "name": "Career",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "PlayMode",
+    "header": "Types/GRaceStatus.h",
+    "members": [
+      {
+        "name": "Roaming",
+        "expr": null
+      },
+      {
+        "name": "Racing",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/GIcon.h",
+    "members": [
+      {
+        "name": "ShowInWorld",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "ShowOnMap",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "Spawned",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "Enabled",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "Disposable",
+        "expr": "1 << 4"
+      },
+      {
+        "name": "SnappedToGround",
+        "expr": "1 << 5"
+      },
+      {
+        "name": "ShowOnSpawn",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "GPSing",
+        "expr": "1 << 7"
+      }
+    ]
+  },
+  {
+    "name": "Type",
+    "header": "Types/GIcon.h",
+    "members": [
+      {
+        "name": "Invalid",
+        "expr": null
+      },
+      {
+        "name": "RaceSprint",
+        "expr": null
+      },
+      {
+        "name": "RaceCircuit",
+        "expr": null
+      },
+      {
+        "name": "RaceDrag",
+        "expr": null
+      },
+      {
+        "name": "RaceKnockout",
+        "expr": null
+      },
+      {
+        "name": "RaceCheckPoint",
+        "expr": null
+      },
+      {
+        "name": "RaceSpeedtrap",
+        "expr": null
+      },
+      {
+        "name": "RaceRival",
+        "expr": null
+      },
+      {
+        "name": "GateSafehouse",
+        "expr": null
+      },
+      {
+        "name": "GateCarLot",
+        "expr": null
+      },
+      {
+        "name": "GateCustomShop",
+        "expr": null
+      },
+      {
+        "name": "HidingSpot",
+        "expr": null
+      },
+      {
+        "name": "PursuitBreaker",
+        "expr": null
+      },
+      {
+        "name": "SpeedTrapInRace",
+        "expr": null
+      },
+      {
+        "name": "Checkpoint",
+        "expr": null
+      },
+      {
+        "name": "GoalMarker",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/GCharacter.h",
+    "members": [
+      {
+        "name": "UsingStockCar",
+        "expr": null
+      },
+      {
+        "name": "AttachedToManager",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "State",
+    "header": "Types/GCharacter.h",
+    "members": [
+      {
+        "name": "Invalid",
+        "expr": null
+      },
+      {
+        "name": "Unspawned",
+        "expr": null
+      },
+      {
+        "name": "SpawningWaitingForModel",
+        "expr": null
+      },
+      {
+        "name": "SpawningWaitingForTrack",
+        "expr": null
+      },
+      {
+        "name": "Spawned",
+        "expr": null
+      },
+      {
+        "name": "UnspawningWaitingUntilOffscreen",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "eState",
+    "header": "Types/ActionQueue.h",
+    "members": [
+      {
+        "name": "Disabled",
+        "expr": null
+      },
+      {
+        "name": "Enabled",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "ActionID",
+    "header": "Types/ActionData.h",
+    "members": [
+      {
+        "name": "NULL_ACTION",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_STEERLEFT",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_STEERRIGHT",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_TURNLEFT",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_TURNRIGHT",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_GAS",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_BRAKE",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_HANDBRAKE",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_GAMEBREAKER",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_SHIFTUP",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_SHIFTDOWN",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_NOS",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_RESET",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_FORWARD",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_BACK",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_JUMP",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_DEBUGHUMAN1",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_DEBUGHUMAN2",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_DEBUGHUMAN3",
+        "expr": null
+      },
+      {
+        "name": "GAMEACTION_DEBUGHUMAN4",
+        "expr": null
+      },
+      {
+        "name": "CAMERAACTION_CHANGE",
+        "expr": null
+      },
+      {
+        "name": "CAMERAACTION_DEBUG",
+        "expr": null
+      },
+      {
+        "name": "CAMERAACTION_ENABLE_ICE",
+        "expr": null
+      },
+      {
+        "name": "CAMERAACTION_LOOKBACK",
+        "expr": null
+      },
+      {
+        "name": "CAMERAACTION_PULLBACK",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_UP",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_DOWN",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_LEFT",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_RUP",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_RDOWN",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_RLEFT",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_RRIGHT",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_ACCEPT",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_CANCEL",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_CANCEL_ALT",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_START",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_BUTTON0",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_BUTTON1",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_BUTTON2",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_BUTTON3",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_BUTTON4",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_BUTTON5",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_LTRIGGER",
+        "expr": null
+      },
+      {
+        "name": "FRONTENDACTION_RTRIGGER",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_PAUSEREQUEST",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_ENGAGE_EVENT",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_PAD_LEFT",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_PAD_DOWN",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_PAD_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_SKIPNIS",
+        "expr": null
+      },
+      {
+        "name": "HUDACTION_NEXTSONG",
+        "expr": null
+      },
+      {
+        "name": "VOIPACTION_PUSHTOTALK",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_UP",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_DOWN",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_LEFT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_FORWARD",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_BACK",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_D_LEFT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_D_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_D_FORWARD",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_MOVE_D_BACK",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_UP",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_DOWN",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_LEFT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_D_UP",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_D_DOWN",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_D_LEFT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_LOOK_D_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_TURBO",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_SUPER_TURBO",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_DROPCAR",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_TOGGLEAI",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_TOGGLESIMSTEP",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_SIMSTEP",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_SCREENSHOT",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_STOPRECORDPATH",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_TOGGLECARCOLOUR",
+        "expr": null
+      },
+      {
+        "name": "DEBUGACTION_TOGGLEDEMOCAMERAS",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_GRAB_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_GRAB_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_FAST_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_FAST_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_UP",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_DOWN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_HELP",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_UNDO",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_PLAY",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_HIDE",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SCREENSHOT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SCREENSHOT_STREAM",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_INSERT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_CUT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_COPY",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_PASTE",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SELECT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_CANCEL",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_ALT_1",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_CLIP_IN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_CLIP_OUT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SIMSPEED_INC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SIMSPEED_DEC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_DUTCH_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_DUTCH_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_ZOOM_IN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_ZOOM_OUT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_LETTERBOX_IN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_LETTERBOX_OUT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_IN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_OUT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_UP",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_DOWN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_TILT_UP",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_TILT_DOWN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_SPIN_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_SPIN_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_BACK",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_BUBBLE_FORTH",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHAKE_MAG_DEC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHAKE_MAG_INC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHAKE_FRQ_DEC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHAKE_FRQ_INC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHUTTLE_LEFT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHUTTLE_RIGHT",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHUTTLE_UP",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHUTTLE_DOWN",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHUTTLE_SPEED_DEC",
+        "expr": null
+      },
+      {
+        "name": "ICEACTION_SHUTTLE_SPEED_INC",
+        "expr": null
+      },
+      {
+        "name": "ACTION_EXITAPPLICATION",
+        "expr": null
+      },
+      {
+        "name": "ACTION_PLUGGED",
+        "expr": null
+      },
+      {
+        "name": "ACTION_UNPLUGGED",
+        "expr": null
+      },
+      {
+        "name": "ACTION_FLUSH",
+        "expr": null
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/Attrib/Instance.h",
+    "members": [
+      {
+        "name": "Dynamic",
+        "expr": "1"
+      }
+    ]
+  },
+  {
+    "name": "Flags",
+    "header": "Types/Attrib/Definition.h",
+    "members": [
+      {
+        "name": "Array",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "InLayout",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "IsBound",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "IsNotSearchable",
+        "expr": "1 << 3"
+      }
+    ]
+  },
+  {
+    "name": "CarType",
+    "header": "Types/Attrib/Layouts/pvehiclelayout.h",
+    "members": [
+      {
+        "name": "McLaren",
+        "expr": "1 << 0"
+      },
+      {
+        "name": "Porsche",
+        "expr": "1 << 1"
+      },
+      {
+        "name": "FordGT",
+        "expr": "1 << 2"
+      },
+      {
+        "name": "Viper",
+        "expr": "1 << 3"
+      },
+      {
+        "name": "AstonMartin",
+        "expr": "1 << 4"
+      },
+      {
+        "name": "Corvette",
+        "expr": "1 << 5"
+      },
+      {
+        "name": "BMW",
+        "expr": "1 << 6"
+      },
+      {
+        "name": "Mercedes",
+        "expr": "1 << 7"
+      },
+      {
+        "name": "Audi",
+        "expr": "1 << 8"
+      },
+      {
+        "name": "Mitsubishi",
+        "expr": "1 << 9"
+      },
+      {
+        "name": "Mustang",
+        "expr": "1 << 10"
+      },
+      {
+        "name": "Lotus",
+        "expr": "1 << 11"
+      },
+      {
+        "name": "Subaru",
+        "expr": "1 << 12"
+      },
+      {
+        "name": "Camaro",
+        "expr": "1 << 13"
+      },
+      {
+        "name": "GTO",
+        "expr": "1 << 14"
+      },
+      {
+        "name": "Nissan",
+        "expr": "1 << 15"
+      },
+      {
+        "name": "Mazda",
+        "expr": "1 << 16"
+      },
+      {
+        "name": "Renault",
+        "expr": "1 << 17"
+      },
+      {
+        "name": "Lexus",
+        "expr": "1 << 18"
+      },
+      {
+        "name": "Mini",
+        "expr": "1 << 19"
+      },
+      {
+        "name": "Volkswagen",
+        "expr": "1 << 20"
+      },
+      {
+        "name": "SUV",
+        "expr": "1 << 21"
+      },
+      {
+        "name": "Pickup",
+        "expr": "1 << 22"
+      },
+      {
+        "name": "Pagani",
+        "expr": "1 << 23"
+      },
+      {
+        "name": "Lamborghini",
+        "expr": "1 << 24"
+      },
+      {
+        "name": "Chrysler",
+        "expr": "1 << 25"
+      },
+      {
+        "name": "Opel",
+        "expr": "1 << 26"
+      },
+      {
+        "name": "Sedan",
+        "expr": "1 << 27"
+      },
+      {
+        "name": "SportsCar",
+        "expr": "1 << 28"
+      },
+      {
+        "name": "Supra",
+        "expr": "1 << 29"
+      },
+      {
+        "name": "Cadillac",
+        "expr": "1 << 30"
+      }
+    ]
+  }
+]

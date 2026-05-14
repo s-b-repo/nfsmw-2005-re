@@ -1,0 +1,230 @@
+NFS Most Wanted (2005) — speed.exe reverse engineering plan & progress
+Updated: 2026-05-14 (end of wave-7)
+
+═════════════════════════════════════════════════════════════════════════════
+Current state vs target for "fully editable in Visual Studio"
+═════════════════════════════════════════════════════════════════════════════
+
+  ┌────────────────────────────────────────┬──────────────────────┬────────────────────────────────────────────────────────────────────┐
+  │                 Metric                 │  Current (5/14 EOD)  │                  Target for "editable in VS"                       │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Functions named                        │ 6,513 / 26,316       │ 26,316 (100%)                                                      │
+  │                                        │ = 24.75%             │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Functions decompiled to compilable C++ │ 0                    │ 26,316                                                             │
+  │                                        │ (naming ≠ decomp)    │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Structs/classes in Ghidra type DB      │ 137 applied          │ ~2,000+ (estimated)                                                │
+  │                                        │ (of 245 SDK)         │                                                                    │
+  │                                        │ + 53 enums applied   │                                                                    │
+  │                                        │ (of 65 SDK)          │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Vtables resolved to class hierarchies  │ ~30                  │ ~500+                                                              │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Global variables typed                 │ ~66                  │ ~10,000+                                                           │
+  │                                        │ (50 + 16 SDK)        │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Third-party headers available          │ 178 (NFSPluginSDK    │ EAGL, EAGL4, EAGL4Anim, FERender, Ecstacy, GameSpy SDK, RenderWare,│
+  │                                        │ mirrored at          │ d3dx9, DirectInput8 — most still proprietary/missing               │
+  │                                        │ docs/nfsplugin_      │                                                                    │
+  │                                        │ sdk_mw05/)           │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ attributes.bin names cracked           │ 294 / 345 = 85.2% ✅ │ 345 (100%)                                                         │
+  │                                        │ (target was 80%)     │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ "Mystery" attribute hashes solved      │ 5 of 5 ✅            │ 5 of 5                                                             │
+  │                                        │ (all wave-6/7)       │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ LZC bundles decompressed (JDLZ v0x02)  │ 4 of 4 ✅            │ 4 of 4                                                             │
+  │                                        │ (12.5 MB unlocked)   │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Major subsystems mapped                │ 27 of ~27 ✅         │ All                                                                │
+  │                                        │ (memory entries +    │                                                                    │
+  │                                        │  entry-point addrs)  │                                                                    │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Build system                           │ none                 │ MSVC 7.1 project files + link script                               │
+  ├────────────────────────────────────────┼──────────────────────┼────────────────────────────────────────────────────────────────────┤
+  │ Linker output matches                  │ n/a                  │ byte-identical PE (or close)                                       │
+  └────────────────────────────────────────┴──────────────────────┴────────────────────────────────────────────────────────────────────┘
+
+═════════════════════════════════════════════════════════════════════════════
+Goals & timelines
+═════════════════════════════════════════════════════════════════════════════
+
+  ┌──────────────────────────────────────────────────────────────┬────────────────────────────────────────────────────┐
+  │                             Goal                             │                       Status                       │
+  ├──────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┤
+  │ Full subsystem map, every major system entry-point named     │ ✅ DONE (wave-5)                                   │
+  │                                                              │ All 27 major subsystems have memory entries,       │
+  │                                                              │ entry-point addresses, and call graphs.            │
+  ├──────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┤
+  │ Crack 80%+ of attribute names                                │ ✅ DONE (wave-7) — 85.2%                           │
+  │                                                              │ Community NFS hash DB integration cracked          │
+  │                                                              │ 121 → 294 in seconds. All 5 mystery hashes solved. │
+  ├──────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┤
+  │ Mod-SDK quality: structs + hook points for top 10 subsystems │ ~85% (NFSPluginSDK + attribute schema readable)    │
+  │                                                              │ Done: PVehicle, RBVehicle, AIVehicle, AICopManager,│
+  │                                                              │ GRaceStatus, FECustomizationRecord typed; 85% of   │
+  │                                                              │ attribute knobs now have readable names.           │
+  │                                                              │ Still TBD: true input-binding lookup, HUD per-     │
+  │                                                              │ widget update fns, EAGL physics integrator (worker)│
+  ├──────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┤
+  │ Pure gameplay layer in editable C++ DLL (sidecar)            │ 6-12 months (reduced from 1-2 years given          │
+  │                                                              │ attribute crack rate + community SDK availability) │
+  ├──────────────────────────────────────────────────────────────┼────────────────────────────────────────────────────┤
+  │ Full speed.exe → compilable VS project, byte-matching output │ 5-15 years, multi-person (unchanged)               │
+  └──────────────────────────────────────────────────────────────┴────────────────────────────────────────────────────┘
+
+═════════════════════════════════════════════════════════════════════════════
+Completed milestones (this session, 2026-05-14)
+═════════════════════════════════════════════════════════════════════════════
+
+  Subsystems newly mapped (wave-5, 8 parallel agents):
+  ✅ Script VM identified as vanilla Lua 5.0.2 (35-opcode table mapped)
+  ✅ Save/Load: MD5 trailer (not CRC); Documents\NFS Most Wanted\<player>
+  ✅ Cutscenes: On2 VP6 + MAD audio (not Bink); EA SCHl/MVhd container
+  ✅ EA Trax music: 2 systems (interactive + licensed streamed)
+  ✅ Race rules engine: 11-value mode enum cracked; Drift confirmed absent
+  ✅ AI racer behavior: no drafting, no AI nitrous, pure rubber-band
+  ✅ GameBreaker (SpeedBreaker): time-scale @ world_root+0x24
+  ✅ HUD rendering: 28 widgets, event-bus driven (NOT direct C++ tick)
+
+  Attribute hash cracking (waves 5/6/7):
+  ✅ Pre-session baseline: 68/345 = 19.7% verified
+  ✅ Wave-5 + Wave-6 manual + compound wordlists: 68 → 121 (+53)
+  ✅ Wave-7 community wordlist (Attribulator + OpenNFSTools + nfsu2-re):
+     121 → 294 (+173) — single-pass match in 1.5 seconds
+  ✅ All 5 originally-mystery hashes cracked:
+       0xB5C0DAC8 = AUTO_SIMPLIFY    (wave-6, SDK header)
+       0xDA5F19F9 = BEHAVIORS         (wave-6, EA vocab)
+       0xEE0011E3 = SimplePhysics     (wave-7, community)
+       0x360552DA = ExplosionEffect   (wave-7, community)
+       0x44F1273B = DROPOUT           (wave-7, community)
+  ✅ Every cracked name re-verified by bChunk re-hash
+
+  Tooling/integration:
+  ✅ NFSPluginSDK integrated: 181 addresses + 65 enums + 245 structs + 178 headers
+  ✅ Bulk-rename pipeline (Python + curl bypass for broken MCP bridge)
+  ✅ docs/renames.csv exported (6,513 rows after wave-6 refresh)
+  ✅ docs/sdk_addrs.json / sdk_enums.json / sdk_structs.json published
+  ✅ docs/attribute_cracks_verified.json (294 entries, all re-hash verified)
+
+  Documentation:
+  ✅ ANTI_RE_AND_PATTERNS.md created (407 lines, 18 sections)
+  ✅ ARCHITECTURE.md expanded to 817 lines (wave-5 section added)
+  ✅ PROGRESS.md created (session-by-session log, wave history)
+  ✅ MEMORY.md index: 38 line-entries (40 memory files total)
+
+  Stale-claim corrections (caught by wave-5/6/7):
+  ✅ 0x56ecc0 isn't input bindings — it's FEPlayerCarDB_GetCarRecordByHandle
+  ✅ MSG_R_BI_DATACRC isn't save CRC — it's an orphan netcode string
+  ✅ 0x504d00 ProcessUIOrHUDElements isn't the HUD walker
+  ✅ Video codec is VP6+MAD, not Bink
+  ✅ Script VM is Lua 5.0.2, not a custom Lua-like
+  ✅ Attribute crack count was over-claimed at 134; corrected to 121 (wave-6),
+     then community-list breakthrough validated 294 (wave-7)
+  ✅ 0xEE0011E3 type corrected: Bool (not Float as in older notes)
+  ✅ 0xDA5F19F9 type corrected: StringKey (not Float as in older notes)
+
+═════════════════════════════════════════════════════════════════════════════
+Pre-wave-5 baseline (for reference)
+═════════════════════════════════════════════════════════════════════════════
+
+  ┌────────────────────────────────────────┬───────────────┐
+  │                 Metric                 │   Pre-wave-5  │
+  ├────────────────────────────────────────┼───────────────┤
+  │ Functions named                        │ ~6,338 / 26K  │
+  │ Subsystems with memory entries         │ 16            │
+  │ Memory entries total                   │ 22            │
+  │ Attribute names verified-cracked       │ 68 / 345      │
+  └────────────────────────────────────────┴───────────────┘
+
+  ┌────────────────────────────────────────┬─────────────────────────────┐
+  │                 Metric                 │     Post-wave-7 (NOW)       │
+  ├────────────────────────────────────────┼─────────────────────────────┤
+  │ Functions named                        │ 6,550 / 26,316 = 24.89%     │
+  │ Subsystems with memory entries         │ 27                          │
+  │ Memory entries total                   │ 40                          │
+  │ Attribute names verified-cracked       │ 294 / 345 = 85.2% ✅        │
+  │ Mystery hashes solved                  │ ALL 5 of 5                  │
+  │ Structs applied to Ghidra type DB      │ 137 (of 245 SDK)            │
+  │ Enums applied to Ghidra type DB        │ 53 (of 65 SDK)              │
+  │ LZC bundles decompressed (JDLZ v0x02)  │ 4 of 4 — 12.5 MB unlocked   │
+  │ docs/                                  │ 8 .md + plan.txt + 5 .json/csv│
+  │ /tmp/ working scripts                  │ 7 crack_v*.py + ghidra_*.sh │
+  │ Wave-7 net adds (vs wave-6)            │ +173 attribute name cracks  │
+  │ Wave-8 net adds (vs wave-7)            │ +37 Ghidra renames          │
+  │                                        │ (input-binding + HUD)       │
+  └────────────────────────────────────────┴─────────────────────────────┘
+
+═════════════════════════════════════════════════════════════════════════════
+Open threads (ordered by ROI)
+═════════════════════════════════════════════════════════════════════════════
+
+  HIGH ROI (wave-8 results below):
+  ✅ Crack remaining attribute names → DONE 85.2% via community wordlist (wave-7)
+  ✅ 5 mystery hashes → all cracked (wave-6 + wave-7)
+  ✅ True input-binding lookup → DONE (wave-8): 76-row template @
+     0x008f6d80; PollAllGameActionBindingsPerFrame @ 0x6349b0. Corrected
+     prior misreading (0x9d is DIK_RCONTROL key, not action ID).
+  ✅ HUD per-widget update functions → 13 of 28 DONE (wave-8): Speedometer,
+     Tachometer, Minimap, HeatMeter, PursuitBoard, etc. Confirmed
+     tick-driven (not event-bus). 15 widgets need runtime breakpoint.
+  ➡  Crack the remaining 51 attribute names — last 15%; not in any
+     community list; likely needs source/PDB leak. Document semantic
+     roles by trace-and-infer instead.
+
+  COMPLETED in wave-6 + wave-7 (2026-05-14):
+  ✅ +226 attribute name cracks (68 → 294 verified) — 19.7% → 85.2%
+  ✅ ALL 5 mystery hashes cracked: AUTO_SIMPLIFY, BEHAVIORS, SimplePhysics,
+     ExplosionEffect, DROPOUT
+  ✅ Type corrections: 0xEE0011E3 is Bool (not Float), 0xDA5F19F9 is StringKey
+  ✅ Community NFS hash DB integrated: NFSTools/Attribulator + MWisBest/
+     OpenNFSTools + yugecin/nfsu2-re — 43,102 names from a decade of
+     community modding
+  ✅ 80% attribute-crack target EXCEEDED (85.2%)
+
+  MEDIUM ROI:
+  - EAGL physics integrator (worker-thread side) — needs live debugger
+  - Lua bytecode .luac disassembly (build patched Lua 5.0 with POS_A=24)
+  - SpeedBreaker energy bar / cooldown globals
+  - Apply remaining 108 SDK structs to Ghidra type DB (245 total, 137 done)
+  - Document semantic roles for remaining 51 uncracked hashes via
+    use-site trace-and-infer
+
+  LOW ROI / OUT OF SCOPE:
+  - GameSpy reimpl (OpenSpy-style multiplayer revival) — community effort
+  - Full speed.exe decompilation to compilable C++ — 5-15 year project
+  - ProStreet/Carbon JDLZ verification (apply existing tool)
+
+═════════════════════════════════════════════════════════════════════════════
+Recommended next direction (post wave-7)
+═════════════════════════════════════════════════════════════════════════════
+
+  The "Mod-SDK quality coverage" goal is essentially reached: attribute schema
+  is 85% readable, all major subsystems mapped, NFSPluginSDK provides typed
+  structs. Stop chasing "full source in VS" as a literal goal. The realistic
+  remaining targets are:
+
+  1. Polish mod-SDK quality (~2 weeks)
+     - Apply remaining 108 SDK structs to Ghidra type DB (need topological
+       sort of struct dependency graph)
+     - Document hook patterns for top 10 subsystems
+     - Write a "first-mod tutorial" using the existing rename/struct/enum DB
+     - Validate that a small mod (e.g. unlock-all-cars or infinite-NOS) can be
+       written using only the docs in this repo
+
+  2. ✅ DONE in wave-7 — 80% target exceeded (85.2%)
+     Approach that worked: download `NFSTools/Attribulator` + `MWisBest/
+     OpenNFSTools` + `yugecin/nfsu2-re` and hash-match against community
+     wordlist (43,102 names). Took ~1.5 seconds vs the planned 2 weeks.
+     Remaining 51 names not in any public list — document semantic roles
+     via use-site analysis instead of trying to crack the literal names.
+
+  3. Live-debugger pass for worker-thread physics (~1 week)
+     - Capture the actual integrator function at runtime
+     - Document the main↔worker buffer exchange protocol
+     - Most-requested mod target (handling tweaks)
+
+  Total realistic timeline to "comprehensive mod-SDK + crackable physics":
+  ~6-8 weeks of focused work at current pace.
