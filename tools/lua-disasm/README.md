@@ -1,15 +1,21 @@
 # lua-disasm — NFSMW Lua 5.0 bytecode tool
 
 `lua-disasm` disassembles Lua 5.0 bytecode chunks shipped inside NFSMW (2005)
-asset bundles. NFSMW uses **vanilla Lua 5.0.2** with **one local modification**:
-the instruction encoding rearranges the `iABC` operand fields so that `A` lives
-in the high byte of the 32-bit word. Stock `luac -l` from a clean lua-5.0.2
-build will load the chunk header successfully but produce garbage operand
-columns, because it shifts `A` to bit 6.
+asset bundles. NFSMW uses **vanilla Lua 5.0.2** with **two local quirks**:
 
-## The encoding twist
+1. **Flipped iABC encoding.** `A` lives in the high byte of the instruction
+   word, not at bit 6.
+2. **JDLZ-wrapped chunks.** Each `.luac` is stored inside a JDLZ v0x02 block
+   inside the bundle. You can't just grep for `\x1bLua\x50`; you need to walk
+   the JDLZ blocks, decompress, then check.
 
-Lua 5.0's canonical bit layout (lopcodes.h):
+Stock `luac -l` from a clean lua-5.0.2 build cannot read these chunks: even if
+you JDLZ-decompress one and hand it to upstream, the header layout differs
+(see below) and the operand fields are shifted to different bit positions.
+
+## Quirk 1 — the encoding twist
+
+Stock Lua 5.0 iABC bit layout (lopcodes.h):
 
 ```
             31           23           14         6      0
@@ -53,10 +59,53 @@ bx  = (insn >> 6)  & 0x3FFFF   # 18-bit
 sbx = bx - 131071              # canonical Lua 5.0 sBx bias
 ```
 
-Every other byte of the chunk format (header, constants, line info, debug
-locals, nested protos) is byte-for-byte canonical Lua 5.0.2 — only the
-instruction word changes. The 35 opcodes (`OP_MOVE`..`OP_CLOSURE`) and the
-`MAXSTACK = 250` RK threshold are identical to upstream.
+The 35 opcodes (`OP_MOVE`..`OP_CLOSURE`) and the `MAXSTACK = 250` RK threshold
+are identical to upstream.
+
+## Quirk 2 — the chunk header
+
+After the `\x1bLua\x50` sig + version, NFSMW writes a **10-byte explicit detail
+block** and **omits the canonical "test number"**:
+
+| Off | Field              | Observed |
+|-----|--------------------|----------|
+| +0  | endianness         | `01` (little) |
+| +1  | sizeof(int)        | `04`     |
+| +2  | sizeof(size_t)     | `04`     |
+| +3  | format byte        | `00`     |
+| +4  | sizeof(Instruction)| `04`     |
+| +5  | SIZE_OP            | `06`     |
+| +6  | SIZE_A             | `08`     |
+| +7  | SIZE_B             | `09`     |
+| +8  | SIZE_C             | `09`     |
+| +9  | sizeof(lua_Number) | `04` (single-precision float) |
+
+(Compare: stock Lua 5.0.2 writes endian + sizeof(int) + sizeof(size_t) +
+sizeof(Instr) + SIZE_INSTRUCTION + SIZE_OP + SIZE_B + sizeof(Number) + an
+8-byte `tx = 3.14159…` test value.)
+
+Everything that follows (function tree: source name, line info, locals,
+constants, nested protos, code) is byte-for-byte canonical Lua 5.0.2
+lundump.c order — only the *instruction word layout* and the *number width*
+differ.
+
+## Quirk 3 — JDLZ wrapping
+
+In `extracted/app/GLOBAL/decompressed_lzc/gameplay.bun` (a `decompressed_lzc/`
+bundle still contains inner JDLZ blocks per asset), each Lua chunk lives
+inside its own JDLZ v0x02 block:
+
+```
++---------+--------+----------+----------+---------+----------+
+| "JDLZ"  | 02 ... | decomp_sz| comp_sz  | flag1/2 | payload  |
+| 4 bytes | 4 byte | 4 LE     | 4 LE     | 2 bytes | (varies) |
++---------+--------+----------+----------+---------+----------+
+       header (0x10)              ^         ^^
+                                  +--- start of compressed stream
+```
+
+`lua-disasm find` walks the bundle for `JDLZ` magic, decompresses each block,
+and checks whether the decompressed buffer starts with `\x1bLua\x50`.
 
 ## Opcode map (35 ops, 0x00..0x22)
 
@@ -101,18 +150,18 @@ instruction word changes. The 35 opcodes (`OP_MOVE`..`OP_CLOSURE`) and the
 ## Subcommands
 
 ```
-lua-disasm find  <bundle>            # locate Lua 5.0 chunks (offset + size)
-lua-disasm dump  <bundle> <offset>   # extract one chunk to a .luac file
+lua-disasm find  <bundle>            # locate JDLZ-wrapped Lua 5.0 chunks
+lua-disasm dump  <bundle> <offset>   # decompress one block to a .luac file
 lua-disasm decode <luac_file>        # disassemble a chunk
 ```
 
-`find` scans for the 5-byte signature `\x1bLua\x50` and **parses each candidate
-chunk fully** to determine its real on-disk length and the main-function's
-source name. Failed candidates are reported with `size=?` so the user can
-sanity-check.
+`find` returns `(jdlz_offset, decomp_size, comp_size, source_name)` for each
+chunk whose JDLZ block decompresses successfully and contains a Lua 5.0
+header. JDLZ blocks holding non-Lua data are silently skipped.
 
-`dump` re-parses the chunk header at the given offset, then writes exactly
-that many bytes to a `.luac` file.
+`dump` parses the JDLZ header at `<offset>` (which must point at the `J`),
+decompresses the block, verifies the Lua signature, and writes the
+**decompressed** bytes to disk so `decode` can consume them directly.
 
 `decode` produces output that mimics `luac -l`:
 
@@ -130,22 +179,23 @@ function main <@scripts/foo.lua:1,99> (42 insns, 0 upvals, 0 params, ...)
 ## Test command
 
 ```sh
-# 1. Find chunks in a bundle.
+# 1. Find Lua chunks in the gameplay bundle (the only bundle that has any).
 python3 tools/lua-disasm/lua_disasm.py \
         find extracted/app/GLOBAL/decompressed_lzc/gameplay.bun
 
 # 2. Pick an offset from the above output and dump it.
 python3 tools/lua-disasm/lua_disasm.py \
-        dump extracted/app/GLOBAL/decompressed_lzc/gameplay.bun 0x... \
+        dump extracted/app/GLOBAL/decompressed_lzc/gameplay.bun 0x14F660 \
         -o /tmp/sample.luac
 
 # 3. Disassemble.
 python3 tools/lua-disasm/lua_disasm.py decode /tmp/sample.luac
 ```
 
-Expected: `find` prints at least one row with a non-`?` size and a `source`
-that ends in `.lua`; `decode` prints a function header followed by lines of
-the form `<pc> [<line>] <OPNAME> <ops> ; <comment>`, ending with a `RETURN`.
+Expected: `find` prints at least one `0x1bLua`-bearing chunk (in the bundle
+shipped with NFSMW PC, gameplay.bun has multiple). `decode` prints a function
+header followed by `<pc> [<line>] <OPNAME> <ops> ; <comment>` rows, ending
+with a `RETURN`.
 
 ## Install
 
@@ -156,9 +206,12 @@ make install    # symlink into $PREFIX/bin (default: $HOME/.local/bin)
 
 ## Limitations
 
-- No bytecode **assembler** (yet). For round-tripping you'd also need to
-  re-emit the flipped-A encoding when writing chunks back into a bundle.
-- No source-level decompiler — `lua-disasm decode` is strictly low-level.
-- `find` only matches Lua 5.0 (`\x1bLua\x50`). If a chunk is JDLZ-compressed
-  inside the bundle, decompress it first with `nfsmw-tool jdlz` (the bundles
-  in `decompressed_lzc/` already are).
+- **No assembler.** Round-tripping a chunk back into the bundle requires
+  re-emitting the flipped-A encoding and re-wrapping in JDLZ — not done.
+- **No source-level decompiler.** Output is opcode-level, not Lua source.
+- **Bundles only.** This tool reads `.bun` files as-is; if you have a
+  `.lzc` from `app/GLOBAL/`, decompress it first with
+  `nfsmw-tool jdlz GLOBAL/GAMEPLAY.LZC` (the bundles in
+  `decompressed_lzc/` are pre-decompressed exactly this way).
+- **Other bundles.** Only `gameplay.bun` has Lua chunks in the shipping
+  build; `GlobalB.bun`, `InGameB.bun`, `FrontB.bun` do not.
