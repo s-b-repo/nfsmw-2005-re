@@ -7,11 +7,13 @@ HERE := $(shell pwd)
 
 all: nfsmw-tool
 
+# Relative symlink so the repo is portable (works after git clone).
 nfsmw-tool: nfsmw_tool.py
 	@chmod +x nfsmw_tool.py
-	@ln -sf "$(HERE)/nfsmw_tool.py" nfsmw-tool
+	@ln -sf nfsmw_tool.py nfsmw-tool
 	@echo "Built: $(HERE)/nfsmw-tool"
 
+# Install symlinks an absolute path because $(PREFIX)/bin may be anywhere.
 install: nfsmw-tool
 	@mkdir -p "$(PREFIX)/bin"
 	@ln -sf "$(HERE)/nfsmw_tool.py" "$(PREFIX)/bin/nfsmw-tool"
