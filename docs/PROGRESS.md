@@ -12,7 +12,8 @@ Tracks the cumulative progress of speed.exe reverse engineering. Each session/wa
 | 2026-05-14 end of wave-6 | 6,513 | 24.7% | 40 | attribute crack push (35.1%); 2 of 5 mystery hashes solved |
 | 2026-05-14 end of wave-7 | 6,513 | 24.7% | 40 | community wordlist integration: 35% → 85% attribute cracks; all 5 mystery hashes solved |
 | 2026-05-14 end of wave-8 | 6,550 | 24.89% | 40 | input-binding system + HUD widget updates fully mapped; 2 prior claims corrected |
-| 2026-05-14 end of wave-9 | **6,597** | **25.07%** | 40 | **trainer DLL built; EAGL physics corrected (no worker thread); event-bus API mapped; 14 HUD ctors named; semantic roles for 15 hashes; 88.6% true attribute crack rate** |
+| 2026-05-14 end of wave-9 | 6,597 | 25.07% | 40 | trainer DLL built; EAGL physics corrected (no worker thread); event-bus API mapped; 14 HUD ctors named; semantic roles for 15 hashes; 88.6% true attribute crack rate |
+| 2026-05-15 end of wave-10 | **6,597** | **25.07%** | **43** | **3 new memory entries: game_state_machine, ai_helicopter, vehicle_cameras. 7 of 10 agents tool-denied (sandbox restrictions); 3 returned partial SDK-based findings; main-session direct RE captured the gaps. Trainer published to GitHub as nfsmw-2005-re.** |
 
 Note: the 24% baseline reflects Ghidra's automatic FLIRT signature recognition (CRT, STL, common libs) — manual session renames are a small fraction. The meaningful metric is **breadth of subsystems mapped**, not raw count.
 
@@ -49,6 +50,15 @@ Note: the 24% baseline reflects Ghidra's automatic FLIRT signature recognition (
 - Render pass pipeline (Clear → ShadowMap → World → HUD → PostProcess → Present)
 - Animation runtime (EAGL4Anim + TickableBus)
 - Career + milestones (event-broadcast model)
+
+### Wave-10 (2026-05-15, parallel RE + GitHub push)
+- **GitHub repo published**: https://github.com/s-b-repo/nfsmw-2005-re (261 files, 2.8 MB, BSD-3)
+- **Linux CLI tool** built: `tools/nfsmw-tool/` (Python; hash, lookup, jdlz, attrs, verify-save, sdk, stats subcommands). Self-test passes; `bChunk("BASE") = 0xA6B47FAC` and `bChunk("MASS") = 0x4A56503D` validated mathematically.
+- **Top-level README + LICENSE + .gitignore** added — repo is community-ready
+- **Game state machine** reverse-engineered: `ProcessGameStateMachine @ 0x6596a0` is a **function-pointer trampoline** (not enum-based). State record at `DAT_00925e70` is 4-slot {fn_ptr, arg, ctx, post_cb}. Transitions happen by state-fn writing a new fn pointer.
+- **AI helicopter** mapped from SDK Extensions.h fingerprints: `vtbl_AIVehicleHelicopter @ 0x008920D8` (MI: AIVehiclePursuit @ 0x891EC0 + IAIHelicopter @ 0x404060). Member layout from SDK header. Despawn paths: fuel exhaustion, damage, pursuit-end, off-nav-net.
+- **Vehicle cameras**: 15 × 0x1c camera array at `DAT_009196b4`, iterated by `UpdateWorldCamerasAndViewport @ 0x72aa70`. ePlayerSettingsCameras enum has 7 modes (Bumper/Hood/Close/Far/SuperFar/Drift/Pursuit). Per-camera dt = 1/30 sec.
+- **Agent constraint discovery**: subagents now run in a more restrictive sandbox than the main session — they cannot reach `Bash`/MCP/curl. Direct-work in the main session is the reliable path going forward. 7 of 10 wave-10 agents reported tool denials; 3 returned partial SDK-based findings.
 
 ### Wave-9 (this session, 2026-05-14, post-validation)
 - **Infinite-NOS trainer DLL** built and installed to `app/scripts/nfsmw_trainer.asi` (99KB PE32; patches Tweak_InfiniteNOS @ 0x937804 + Tweak_InfiniteRaceBreaker @ 0x988E1C). Validates the entire docs-to-runtime chain. MinGW-w64 installed for build.
