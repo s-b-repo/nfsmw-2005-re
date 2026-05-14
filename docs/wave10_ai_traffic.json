@@ -1,0 +1,108 @@
+{
+  "task": "Wave 10 - AI Traffic system mapping",
+  "status": "PARTIAL - Ghidra bridge inaccessible; static-only deliverable",
+  "blocker": {
+    "summary": "All three Ghidra-bridge access paths were denied this session: (a) /tmp/ghidra_*.sh helper scripts via Bash, (b) direct mcp__ghidra__* MCP tools, (c) curl to 127.0.0.1:8089. objdump also blocked. Reading speed.exe as a binary file is blocked. No renames or comments could be applied.",
+    "denied_calls": [
+      "/tmp/ghidra_post.sh get_metadata '{}'",
+      "mcp__ghidra__list_instances()",
+      "curl -s http://127.0.0.1:8089/mcp/schema",
+      "objdump -h speed.exe",
+      "Read speed.exe (binary)"
+    ]
+  },
+  "verified_static_findings": {
+    "vtbl_AIVehicleTraffic": {
+      "address": "0x00891CF8",
+      "evidence": "docs/nfsplugin_sdk_mw05/Extensions.h:528-538 AIVehicleTrafficCast_t verifies the cast by checking *(uintptr_t*)ai == 0x891CF8 (the object's slot-0 vtable pointer). The same pattern verifiably resolves every other AIVehicle subclass cast.",
+      "confidence": "HIGH"
+    },
+    "sibling_vtables_for_context": {
+      "AIVehicle_base":      "0x00891A80",
+      "AIVehiclePid":        "0x00891BB8",
+      "AIVehicleTraffic":    "0x00891CF8",
+      "AIVehiclePursuit":    "0x00891EC0",
+      "AIVehicleHelicopter": "0x008920D8",
+      "AIVehicleCopCar":     "0x00892560",
+      "AIVehicleRacecar":    "0x00892720",
+      "AIVehicleHuman":      "0x00892AD0",
+      "AIVehicleEmpty":      "0x00892E28",
+      "source": "docs/nfsplugin_sdk_mw05/Extensions.h"
+    },
+    "class_layout": {
+      "inheritance":              "AIVehicleTraffic : AIVehicle, ITrafficAI",
+      "AIVehicle_inherits":       "VehicleBehavior, IVehicleAI, AIAvoidable",
+      "ITrafficAI_inherits":      "UTL::COM::IUnknown",
+      "ITrafficAI_GetIHandle":    "0x00403950",
+      "virtuals_AIVehicleTraffic_overrides": ["~AIVehicleTraffic","Update(float dT)","StartDriving(float speed)"],
+      "key_AIVehicle_fields": [
+        "mDriveToNav: WRoadNav*",
+        "mDriveSpeed: float",
+        "mDest: Vector3",
+        "mTarget: AITarget*",
+        "mThinkTask: HSIMTASK__*",
+        "mLastSpawnTime: float",
+        "mCanRespawn: bool",
+        "mCurrentGoal: AIGoal*",
+        "mGoalName: UCrc32",
+        "mAvoidableRadius: float",
+        "mCollNav: WRoadNav*",
+        "mCurrentRoad, mFutureRoad: WRoadNav (embedded)",
+        "mAccelData[10]: float",
+        "mTopSpeed: float"
+      ],
+      "WRoadNav_lane_state": "fLaneInd, fFromLaneInd, fToLaneInd, fLaneOffset, fFromLaneOffset, fToLaneOffset, fLaneChangeDist, fLaneChangeInc, bTrafficFilter, fOccludingTrailSpeed, NavCookie cookie-trail (32 deep)"
+    },
+    "per_frame_tick_function": {
+      "address": "TBD - DWORD at file-offset 0x491CFC = (VA 0x891CFC) = vtbl_AIVehicleTraffic[1]",
+      "name_when_resolved": "AIVehicleTraffic::Update(float dT)",
+      "confidence": "vtable slot is provably the Update override (declared in AIVehicleTraffic.h), but the exact address inside the vtable cannot be read without Ghidra or binary access this session."
+    },
+    "existing_renamed_anchors": {
+      "ITrafficAI_GetIHandle":               "0x00403950",
+      "SetAITrafficGoal":                    "0x00423190",
+      "DestroyAITrafficVehicleEntry":        "0x004352F0",
+      "DestroyAITrafficVehicleEntry_thunk":  "0x0043C220",
+      "SetTrafficSignVtable":                "0x0050DF00",
+      "ReleaseAITrafficSlot":                "0x007831E0",
+      "DestroyTrafficSpawnSlotEntry":        "0x0078FBC0",
+      "GetTrafficSpawnSystemSingleton":      "0x00799F50",
+      "DestroyTrafficAIChainList":           "0x007B3F00",
+      "source": "docs/renames.csv (already applied)"
+    },
+    "density_globals": {
+      "g_SkipFETrafficDensity": {"addr":"0x00926090","type":"float","default":0.0,"role":"Density override active when SkipFE bootstrap path is used."},
+      "g_SkipFEDisableTraffic": {"addr":"0x00926094","type":"bool","default":true,"role":"Master traffic toggle in the debug skip-FE flow."}
+    },
+    "spawn_manager_struct": "AISpawnManager has fields mMinSpawnDist (float) and mMaxSpawnDist (float) per AISpawnManager.h. These are the radius-gate consumers of MAX_TRAFFIC_SPAWN_DISTANCE."
+  },
+  "unverified_questions_for_next_session": [
+    "Exact address of AIVehicleTraffic::Update (= DWORD at VA 0x891CFC).",
+    "Exact address of AIVehicleTraffic::StartDriving (last vtable slot).",
+    "CreateAITrafficVehicleEntry address (pair with DestroyAITrafficVehicleEntry @ 0x4352F0).",
+    "Where mMinSpawnDist / mMaxSpawnDist are loaded from the MAX_TRAFFIC_SPAWN_DISTANCE attribute.",
+    "Lane-change function (writer of WRoadNav.fFromLaneInd / fToLaneInd / fLaneChangeInc).",
+    "Whether AIVehicleTraffic uses an AIGoalTraffic goal-stack entry (sibling to AIGoalRacer/AIGoalPursuit) or is goal-less.",
+    "Whether the player-aggression heat path reads any AIVehicleTraffic state (DamageVehicle hit-on-civilian -> heat?).",
+    "Density attribute hashes: bChunk('MAX_TRAFFIC_SPAWN_DISTANCE') / 'TRAFFIC_LANE_CHANGES' / 'TRAFFIC_TYPES' / 'TRAFFIC_SPEED' / 'CHECK_PLAYER_BEHIND_TRAFFIC' consumers."
+  ],
+  "renames_queued_for_next_session": [
+    {"addr":"0x00891CF8","name":"vtbl_AIVehicleTraffic","kind":"data label"},
+    {"addr":"<DWORD@0x891CFC>","name":"AIVehicleTraffic_Update","kind":"function"},
+    {"addr":"<DWORD@vt[last]>","name":"AIVehicleTraffic_StartDriving","kind":"function"},
+    {"addr":"0x00926090","name":"g_SkipFETrafficDensity","kind":"data label"},
+    {"addr":"0x00926094","name":"g_SkipFEDisableTraffic","kind":"data label"}
+  ],
+  "ghidra_first_calls_next_session": [
+    "/tmp/ghidra_post.sh get_metadata '{}'",
+    "/tmp/ghidra_get.sh get_xrefs_to 'address=0x891cf8'",
+    "/tmp/ghidra_get.sh decompile_function 'address=0x4352f0'",
+    "/tmp/ghidra_get.sh decompile_function 'address=0x423190'",
+    "/tmp/ghidra_get.sh decompile_function 'address=0x7831e0'",
+    "/tmp/ghidra_get.sh decompile_function 'address=0x799f50'",
+    "/tmp/ghidra_get.sh decompile_function 'address=0x7b3f00'",
+    "/tmp/ghidra_get.sh search_strings 'q=AIGoalTraffic'",
+    "/tmp/ghidra_get.sh search_strings 'q=AIActionTraffic'",
+    "/tmp/ghidra_get.sh search_strings 'q=MAX_TRAFFIC_SPAWN_DISTANCE'"
+  ]
+}
