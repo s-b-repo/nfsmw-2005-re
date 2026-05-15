@@ -2,7 +2,7 @@
 
 A community reverse-engineering, documentation, and modding-tools project for **Need For Speed Most Wanted (2005)** (PC retail, `speed.exe`, PE32 i386, MSVC 7.10, image base `0x00400000`, 26,316 functions).
 
-> **Status (2026-05-15)**: 50 memory entries covering every major subsystem, **294 / 345 (85.2%) attribute names cracked**, 6,643 functions named in Ghidra (25.24 %), validated by a working ASI mod (`mods/infinite_trainer/`). All 5 of the original "mystery" attribute hashes solved. HUD walker discovered (wave-13) + 24-widget slot map (wave-14).
+> **Status (2026-05-15)**: 53 memory entries covering every major subsystem, **294 / 345 (85.2%) attribute names cracked**, 6,664 functions named in Ghidra (25.32 %), validated by a working ASI mod (`mods/infinite_trainer/`). All 5 of the original "mystery" attribute hashes solved. **HUD subsystem fully reverse-engineered end-to-end** (waves 8–17): walker, 24-widget slot map, per-widget internals, FNG event-bus full dispatch chain.
 
 ## What this repo contains
 

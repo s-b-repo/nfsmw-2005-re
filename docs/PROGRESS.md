@@ -17,7 +17,11 @@ Tracks the cumulative progress of speed.exe reverse engineering. Each session/wa
 | 2026-05-15 end of wave-11 | 6,632 | 25.20% | 47 | Wave-9 punch-list closed: FE nav (224 .fng), PursuitBreaker env (3 hashes), user-key SpeedBreaker chain, HUD update verification (14 widgets, 10 corrected). |
 | 2026-05-15 end of wave-12 | 6,632 | 25.20% | 48 | Deep-mapped all 10 corrected widgets. BustedMeter Update is no-op. TimeExtension is TOLLBOOTH-only. 10 agents launched, all tool-denied. |
 | 2026-05-15 end of wave-13 | 6,643 | 25.24% | 49 | **HUD per-frame walker DISCOVERED**: CHudWidgetArray_Tick @ 0x58ca30 (vt[1] of CHudWidgetArray vtable at 0x8a2538). |
-| 2026-05-15 end of wave-14 | **6,643** | **25.24%** | **50** | **24-widget slot map complete**: every widget cross-referenced from master init against the walker. Only 10/24 are walker-ticked; 14 are FNG-bus or passive. |
+| 2026-05-15 end of wave-14 | 6,643 | 25.24% | 50 | 24-widget slot map. 10/24 walker-ticked; 14 FNG-bus or passive. |
+| 2026-05-15 end of wave-15 | 6,643 | 25.24% | 50 | Full doc sync (README/ARCHITECTURE/PROGRESS/plan). |
+| 2026-05-15 end of wave-16 | 6,649 | 25.27% | 52 | **FNG event-bus producer chain**: PostUIEventToNamedNode → DispatchUIEventToNamedNode → ScheduleUIDeferredEvent. **AI vtables read**: vtbl_AIVehicleTraffic (24 slots) + vtbl_AIVehicleHelicopter (30 slots); key Update_OnDriving slots renamed. |
+| 2026-05-15 end of wave-17 | **6,664** | **25.32%** | **53** | **FNG dispatch chain CLOSED end-to-end**. DrainUIDeferredEventQueue_PerFrame @ 0x5c1460 + FE_PerFrameTick @ 0x5c53c0. Queue = doubly-linked list, 0xABADCAFE debug fence. 14 non-walker widgets are EVENT-DRIVEN push model. HUD subsystem fully RE'd. |
+| 2026-05-15 wave-18 in flight | 6,664 | 25.32% | 53 | 10 agents writing consolidated reference docs (MODDING_GUIDE, SDK_QUICK_REFERENCE, HUD_COMPLETE, AI_SYSTEMS, PHYSICS_AND_VEHICLES, SCRIPT_VM_GUIDE, EVENT_BUSES, SAVE_FILE_FORMAT, ATTRIBUTE_DATABASE, MOD_RECIPES + cookbook script). |
 
 Note: the 24% baseline reflects Ghidra's automatic FLIRT signature recognition (CRT, STL, common libs) — manual session renames are a small fraction. The meaningful metric is **breadth of subsystems mapped**, not raw count.
 

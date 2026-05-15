@@ -142,7 +142,7 @@ Pre-wave-5 baseline (for reference)
   ┌────────────────────────────────────────┬─────────────────────────────┐
   │                 Metric                 │     Post-wave-7 (NOW)       │
   ├────────────────────────────────────────┼─────────────────────────────┤
-  │ Functions named                        │ 6,643 / 26,316 = 25.24%     │
+  │ Functions named                        │ 6,664 / 26,316 = 25.32%     │
   │ Subsystems with memory entries         │ 27                          │
   │ Memory entries total                   │ 40                          │
   │ Attribute names verified-cracked       │ 294 / 345 = 85.2% ✅        │
@@ -158,6 +158,9 @@ Pre-wave-5 baseline (for reference)
   │ Wave-9..14 cumulative net adds         │ +93 Ghidra renames          │
   │                                        │ (HUD walker, slot map,      │
   │                                        │  semantic roles, AI vtables)│
+  │ Wave-15..17 cumulative net adds        │ +21 Ghidra renames          │
+  │                                        │ (FNG dispatch chain, AI vt  │
+  │                                        │  slots, queue drainer)      │
   └────────────────────────────────────────┴─────────────────────────────┘
 
 ═════════════════════════════════════════════════════════════════════════════
