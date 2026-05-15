@@ -13,7 +13,11 @@ Tracks the cumulative progress of speed.exe reverse engineering. Each session/wa
 | 2026-05-14 end of wave-7 | 6,513 | 24.7% | 40 | community wordlist integration: 35% → 85% attribute cracks; all 5 mystery hashes solved |
 | 2026-05-14 end of wave-8 | 6,550 | 24.89% | 40 | input-binding system + HUD widget updates fully mapped; 2 prior claims corrected |
 | 2026-05-14 end of wave-9 | 6,597 | 25.07% | 40 | trainer DLL built; EAGL physics corrected (no worker thread); event-bus API mapped; 14 HUD ctors named; semantic roles for 15 hashes; 88.6% true attribute crack rate |
-| 2026-05-15 end of wave-10 | **6,597** | **25.07%** | **43** | **3 new memory entries: game_state_machine, ai_helicopter, vehicle_cameras. 7 of 10 agents tool-denied (sandbox restrictions); 3 returned partial SDK-based findings; main-session direct RE captured the gaps. Trainer published to GitHub as nfsmw-2005-re.** |
+| 2026-05-15 end of wave-10 | 6,597 | 25.07% | 43 | 3 new memory entries: game_state_machine, ai_helicopter, vehicle_cameras. 7 of 10 agents tool-denied; 3 returned partial SDK findings. Trainer published to GitHub. |
+| 2026-05-15 end of wave-11 | 6,632 | 25.20% | 47 | Wave-9 punch-list closed: FE nav (224 .fng), PursuitBreaker env (3 hashes), user-key SpeedBreaker chain, HUD update verification (14 widgets, 10 corrected). |
+| 2026-05-15 end of wave-12 | 6,632 | 25.20% | 48 | Deep-mapped all 10 corrected widgets. BustedMeter Update is no-op. TimeExtension is TOLLBOOTH-only. 10 agents launched, all tool-denied. |
+| 2026-05-15 end of wave-13 | 6,643 | 25.24% | 49 | **HUD per-frame walker DISCOVERED**: CHudWidgetArray_Tick @ 0x58ca30 (vt[1] of CHudWidgetArray vtable at 0x8a2538). |
+| 2026-05-15 end of wave-14 | **6,643** | **25.24%** | **50** | **24-widget slot map complete**: every widget cross-referenced from master init against the walker. Only 10/24 are walker-ticked; 14 are FNG-bus or passive. |
 
 Note: the 24% baseline reflects Ghidra's automatic FLIRT signature recognition (CRT, STL, common libs) — manual session renames are a small fraction. The meaningful metric is **breadth of subsystems mapped**, not raw count.
 
@@ -59,6 +63,23 @@ Note: the 24% baseline reflects Ghidra's automatic FLIRT signature recognition (
 - **AI helicopter** mapped from SDK Extensions.h fingerprints: `vtbl_AIVehicleHelicopter @ 0x008920D8` (MI: AIVehiclePursuit @ 0x891EC0 + IAIHelicopter @ 0x404060). Member layout from SDK header. Despawn paths: fuel exhaustion, damage, pursuit-end, off-nav-net.
 - **Vehicle cameras**: 15 × 0x1c camera array at `DAT_009196b4`, iterated by `UpdateWorldCamerasAndViewport @ 0x72aa70`. ePlayerSettingsCameras enum has 7 modes (Bumper/Hood/Close/Far/SuperFar/Drift/Pursuit). Per-camera dt = 1/30 sec.
 - **Agent constraint discovery**: subagents now run in a more restrictive sandbox than the main session — they cannot reach `Bash`/MCP/curl. Direct-work in the main session is the reliable path going forward. 7 of 10 wave-10 agents reported tool denials; 3 returned partial SDK-based findings.
+
+### Wave-13/14 (2026-05-15, HUD walker + slot map)
+
+The wave-9 open question — "where is the per-frame HUD walker?" — finally solved:
+
+- **`CHudWidgetArray_Tick @ 0x58ca30`** is the walker (vt[1] of CHudWidgetArray's vtable at `0x008a2538`).
+- The walker is **inline, not a loop**: 11 hardcoded slot reads at fixed offsets (`+0x2dc`, `+0x2e0`, ..., `+0x32c`).
+- Each slot's widget object has a 4-dword **mode-filter mask** at `widget[6..9]`. Walker calls `(*widget->vt[1])()` only if `(widget[6] & widget[8]) != 0 || (widget[7] & widget[9]) != 0`.
+- Slot at `+0x314` has NO mode-filter — always called unconditionally. Currently empty in retail; could be a clean asi-mod hook point.
+
+Cross-referencing the walker's 11 slots against master init `CHudWidgetArray_Ctor @ 0x5a6600`'s 24 ConstructHud_* calls revealed:
+
+- **Only 10 widgets are walker-ticked** (TurboMeter, EngineTempGauge, SpeedBreakerMeter, RaceOverMessage, GenericMessage, WrongWayIndi, Countdown, RadarDetector, MenuZoneTrigger, Infractions).
+- **The other 14 widgets** (Speedometer, Tachometer, DragTachometer, ShiftUpdater, CostToState, Reputation, HeatMeterInRace, NitrousGauge, LeaderBoard, PursuitBoardInRace, MilestoneBoard, BustedMeter, TimeExtension, GetAwayMeter) update via **FNG event bus** (`PostUIEventToNamedNode` on UI root `DAT_0091cadc`) or are fully passive (BustedMeter, GetAwayMeter).
+- This explains BustedMeter's no-op Update found in wave-12 — it's a passive widget.
+
+Vtable map for CHudWidgetArray (12 slots; 7 named): Tick / SetActive / CheckGameState / SetFlag700 / DestroyMaybe / Dtor + 5 still-unnamed.
 
 ### Wave-9 (this session, 2026-05-14, post-validation)
 - **Infinite-NOS trainer DLL** built and installed to `app/scripts/nfsmw_trainer.asi` (99KB PE32; patches Tweak_InfiniteNOS @ 0x937804 + Tweak_InfiniteRaceBreaker @ 0x988E1C). Validates the entire docs-to-runtime chain. MinGW-w64 installed for build.

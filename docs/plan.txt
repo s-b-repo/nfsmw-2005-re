@@ -142,7 +142,7 @@ Pre-wave-5 baseline (for reference)
   ┌────────────────────────────────────────┬─────────────────────────────┐
   │                 Metric                 │     Post-wave-7 (NOW)       │
   ├────────────────────────────────────────┼─────────────────────────────┤
-  │ Functions named                        │ 6,550 / 26,316 = 24.89%     │
+  │ Functions named                        │ 6,643 / 26,316 = 25.24%     │
   │ Subsystems with memory entries         │ 27                          │
   │ Memory entries total                   │ 40                          │
   │ Attribute names verified-cracked       │ 294 / 345 = 85.2% ✅        │
@@ -155,24 +155,38 @@ Pre-wave-5 baseline (for reference)
   │ Wave-7 net adds (vs wave-6)            │ +173 attribute name cracks  │
   │ Wave-8 net adds (vs wave-7)            │ +37 Ghidra renames          │
   │                                        │ (input-binding + HUD)       │
+  │ Wave-9..14 cumulative net adds         │ +93 Ghidra renames          │
+  │                                        │ (HUD walker, slot map,      │
+  │                                        │  semantic roles, AI vtables)│
   └────────────────────────────────────────┴─────────────────────────────┘
 
 ═════════════════════════════════════════════════════════════════════════════
 Open threads (ordered by ROI)
 ═════════════════════════════════════════════════════════════════════════════
 
-  HIGH ROI (wave-8 results below):
+  HIGH ROI — UPDATED through wave-14:
   ✅ Crack remaining attribute names → DONE 85.2% via community wordlist (wave-7)
   ✅ 5 mystery hashes → all cracked (wave-6 + wave-7)
-  ✅ True input-binding lookup → DONE (wave-8): 76-row template @
-     0x008f6d80; PollAllGameActionBindingsPerFrame @ 0x6349b0. Corrected
-     prior misreading (0x9d is DIK_RCONTROL key, not action ID).
-  ✅ HUD per-widget update functions → 13 of 28 DONE (wave-8): Speedometer,
-     Tachometer, Minimap, HeatMeter, PursuitBoard, etc. Confirmed
-     tick-driven (not event-bus). 15 widgets need runtime breakpoint.
-  ➡  Crack the remaining 51 attribute names — last 15%; not in any
-     community list; likely needs source/PDB leak. Document semantic
-     roles by trace-and-infer instead.
+  ✅ True input-binding lookup → DONE (wave-8): 76-row template @ 0x008f6d80;
+     PollAllGameActionBindingsPerFrame @ 0x6349b0.
+  ✅ HUD per-widget update functions → all 24 mapped (waves 8/9/11/12/14):
+     authoritative slot map at +0x2c0..+0x32c on CHudWidgetArray; 10 walker-
+     ticked + 14 FNG-bus / passive.
+  ✅ HUD per-frame walker → DONE (wave-13): CHudWidgetArray_Tick @ 0x58ca30,
+     inline iteration of 11 slots with widget[6..9] mode-filter masks.
+  ✅ AI traffic vtable → vtbl_AIVehicleTraffic @ 0x00891CF8 (wave-10).
+  ✅ AI helicopter vtable → vtbl_AIVehicleHelicopter @ 0x008920D8 (wave-10).
+  ✅ User-key SpeedBreaker C++ native → DONE (wave-11): full chain
+     HandleSpeedBreakerToggleRequest → SetSpeedBreakerActive → energy tick.
+  ✅ FE navigation graph → DONE (wave-11): 14 FE_* fns + 224 .fng catalog.
+  ✅ Pursuit-breaker env → DONE (wave-11): 3 event hashes mapped.
+  ✅ Game state machine → DONE (wave-10): function-pointer trampoline at
+     ProcessGameStateMachine @ 0x6596a0.
+  ➡  Remaining (LOW-MED ROI):
+     - 5 unnamed CHudWidgetArray vt slots (vt[3,6,8..11]) — quick wins
+     - 51 still-uncracked attribute hashes — need PDB/source leak
+     - BustedMeter / GetAwayMeter external writers — need cop-AI tick deep-dive
+     - Speedometer/Tachometer FNG event-bus dispatch chain
 
   COMPLETED in wave-6 + wave-7 (2026-05-14):
   ✅ +226 attribute name cracks (68 → 294 verified) — 19.7% → 85.2%

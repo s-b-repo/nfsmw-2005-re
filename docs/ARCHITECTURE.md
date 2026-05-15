@@ -692,7 +692,49 @@ Volume duck queue @ `g_abAudioVolumeFadeSlots @ 0x91d928` — 63 × 12-byte slot
 ### HUD rendering
 28 named widgets (`Hud_Speedometer`, `Hud_Tachometer`, `Hud_Minimap`, `Hud_HeatMeter`, `Hud_BustedMeter`, `Hud_GetAwayMeter`, `Hud_NitrousGauge`, `Hud_SpeedBreakerMeter`, `Hud_Infractions`, `Hud_PursuitBoard`, `Hud_MilestoneBoard`, `Hud_TurboMeter`, `Hud_Countdown`, `Hud_LeaderBoard`, `Hud_RaceInformation`, `Hud_ShiftUpdater`, `Hud_TimeExtension`, `Hud_DragTachometer`, `Hud_EngineTempGauge`, `Hud_RadarDetector`, `Hud_MenuZoneTrigger`, `Hud_CostToState`, `Hud_Reputation`, `Hud_WrongWayIndicator`, `Hud_GenericMessage`, `Hud_RaceOverMessage`).
 
-These are widget objects with per-frame Update vtable methods (slot[3] of base vtable). Updated each frame — **tick-driven, NOT event-bus driven** (correction from earlier theory). Wave-8 mapped 13 of 28 widget update functions:
+**UPDATED 2026-05-15 (wave-11/12/13/14)**: HUD widget vtable is **2-slot only** (slot[0]=dtor, slot[1]=Update — NOT slot[3] as earlier waves assumed). The per-frame walker is **`CHudWidgetArray_Tick @ 0x58ca30`** (vt[1] of CHudWidgetArray vtable at `0x008a2538`). The walker is **inline, not a loop** — iterates 11 hardcoded slots on CHudWidgetArray at fixed offsets:
+
+```c
+widget = *(int**)(this + offset);  // for offset in 0x2dc..0x32c
+if (widget && ((widget[6] & widget[8]) || (widget[7] & widget[9])))
+    (*widget->vt[1])();  // call Update if mode-filter passes
+```
+
+Slot at `+0x314` has **no mode-filter** — always called unconditionally. Currently empty in retail; clean asi-hook point.
+
+**24-widget storage layout** (cross-referenced from `CHudWidgetArray_Ctor @ 0x5a6600`):
+
+| Offset | Widget | Walker-ticked? |
+|---|---|---|
+| `+0x2c0` | Speedometer | ❌ |
+| `+0x2c4` | Tachometer | ❌ |
+| `+0x2c8` | DragTachometer | ❌ |
+| `+0x2cc` | ShiftUpdater | ❌ |
+| `+0x2d0` | CostToState | ❌ |
+| `+0x2d4` | Reputation | ❌ |
+| `+0x2d8` | HeatMeterInRace | ❌ |
+| `+0x2dc` | TurboMeter | **✅** |
+| `+0x2e0` | EngineTempGauge | **✅** |
+| `+0x2e4` | NitrousGauge | ❌ |
+| `+0x2e8` | SpeedBreakerMeter | **✅** |
+| `+0x2ec` | RaceOverMessage | **✅** |
+| `+0x2f0` | GenericMessage | **✅** |
+| `+0x2fc` | LeaderBoard | ❌ |
+| `+0x300` | PursuitBoardInRace | ❌ |
+| `+0x304` | MilestoneBoard | ❌ |
+| `+0x308` | BustedMeter | ❌ (passive — Update is no-op) |
+| `+0x30c` | TimeExtension | ❌ |
+| `+0x310` | WrongWayIndi | **✅** |
+| `+0x314` | (empty) | **✅** always |
+| `+0x318` | Countdown | **✅** |
+| `+0x31c` | RadarDetector | **✅** |
+| `+0x324` | GetAwayMeter | ❌ (stub Update) |
+| `+0x328` | MenuZoneTrigger | **✅** |
+| `+0x32c` | Infractions | **✅** |
+
+Non-walker widgets update via **FNG event bus** (`PostUIEventToNamedNode` on UI root `DAT_0091cadc`) — node-handler-driven, not per-frame ticked.
+
+Per-widget Update addresses (waves 8/11/12 mapped):
 
 | Widget | Update fn | Data source |
 |---|---|---|

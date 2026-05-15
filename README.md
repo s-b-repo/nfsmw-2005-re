@@ -2,7 +2,7 @@
 
 A community reverse-engineering, documentation, and modding-tools project for **Need For Speed Most Wanted (2005)** (PC retail, `speed.exe`, PE32 i386, MSVC 7.10, image base `0x00400000`, 26,316 functions).
 
-> **Status (2026-05-15)**: 27 major subsystems mapped, **294 / 345 (85.2%) attribute names cracked**, 6,597 functions named in Ghidra (24.96 %), validated by a working ASI mod (`mods/infinite_trainer/`). All 5 of the original "mystery" attribute hashes have been solved.
+> **Status (2026-05-15)**: 50 memory entries covering every major subsystem, **294 / 345 (85.2%) attribute names cracked**, 6,643 functions named in Ghidra (25.24 %), validated by a working ASI mod (`mods/infinite_trainer/`). All 5 of the original "mystery" attribute hashes solved. HUD walker discovered (wave-13) + 24-widget slot map (wave-14).
 
 ## What this repo contains
 
@@ -49,6 +49,9 @@ A community reverse-engineering, documentation, and modding-tools project for **
 | **Drift mode is NOT in MW** — leftover Underground-era string | [`docs/ANTI_RE_AND_PATTERNS.md`](docs/ANTI_RE_AND_PATTERNS.md) §14 |
 | **NO physics worker thread** — integrator runs inline on main thread | [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) wave-9 correction |
 | All 5 original mystery hashes cracked: AUTO_SIMPLIFY, BEHAVIORS, SimplePhysics, ExplosionEffect, DROPOUT | [`docs/attribute_cracks_verified.json`](docs/attribute_cracks_verified.json) |
+| **HUD per-frame walker** = `CHudWidgetArray_Tick @ 0x58ca30` (vt[1] of vtable @ 0x8a2538); inline iteration of 11 fixed slots; mode-filter via widget[6..9] masks | [`docs/wave13_hud_walker.md`](docs/wave13_hud_walker.md) |
+| **24 HUD widgets** mapped to exact CHudWidgetArray storage offsets (+0x2c0..+0x32c). Only 10 walker-ticked; 14 are FNG-bus / passive | [`docs/wave14_hud_slot_map.md`](docs/wave14_hud_slot_map.md) |
+| **BustedMeter is a passive widget** — Update is no-op; external writer pokes the data into the FNG | [`docs/hud_widget_decomps/BustedMeter_Update.txt`](docs/hud_widget_decomps/BustedMeter_Update.txt) |
 
 ## Quick start
 
