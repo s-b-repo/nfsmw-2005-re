@@ -91,12 +91,21 @@ cp nfsmw_trainer.asi /path/to/NFSMW/scripts/
 
 Run NFSMW, race, use NOS — never depletes. Validates the entire docs-to-runtime chain.
 
+## Companion: the mod SDK
+
+A header-only, cross-platform mod SDK built on top of this RE database
+lives in its own repo: **[s-b-repo/nfsmw-2005-sdk](https://github.com/s-b-repo/nfsmw-2005-sdk)**.
+Build mods from Linux/Windows/macOS (MinGW-w64 i686); the output DLL loads
+under **both** Ultimate-ASI-Loader and **BepInEx 6** from a single file.
+Its address tables are generated from this repo's `docs/sdk_addrs.json`,
+`docs/attribute_cracks_verified.json`, and `docs/sdk_enums.json`.
+
 ## How to use this repo for your own modding
 
 1. **Find what you want to change.** Use [`docs/attribute_hashes.md`](docs/attribute_hashes.md) to find an attribute name (e.g. `MASS`, `TopSpeed`, `RubberBandGain`), or [`docs/sdk_addrs.json`](docs/sdk_addrs.json) to find a global (e.g. `Tweak_InfiniteNOS`, `DrawCars`).
 2. **Compute the hash if needed.** `nfsmw-tool hash <name>` gives you the 32-bit key.
 3. **Find the read/write site in Ghidra.** Open `speed.exe`, search for the constant. With our 460 disassembly annotations applied, the hashes are pre-labeled with their cracked names.
-4. **Write a `.asi` mod.** Copy `mods/infinite_trainer/` as a template. Replace the address constants. `make install`.
+4. **Write a mod.** Easiest path: use the [nfsmw-2005-sdk](https://github.com/s-b-repo/nfsmw-2005-sdk) (`NFSMW_PLUGIN_MAIN`, typed globals, hook helpers). Or copy `mods/infinite_trainer/` as a bare `.asi` template and replace the address constants.
 
 ## How this work was done
 

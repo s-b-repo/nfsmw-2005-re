@@ -83,3 +83,6 @@ mods/**/*.asi
 !mods/*/*.c
 !mods/*/*.cpp
 !mods/*/*.h
+
+# SDK lives in its own repo (s-b-repo/nfsmw-2005-sdk)
+/sdk/
