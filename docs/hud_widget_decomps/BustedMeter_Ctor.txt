@@ -1,0 +1,41 @@
+
+/* HUD BustedMeter widget ctor (state 22). */
+
+void * __thiscall ConstructHud_BustedMeter(void *this,void *param_1,undefined4 param_2)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_008733a8;
+  local_c = ExceptionList;
+  iVar1 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar1 = iVar1;
+  *(int *)((int)this + 0xc) = iVar1;
+  *(undefined4 *)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x800000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar2 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar2 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_005655f0,puVar2);
+  *puVar2 = &PTR_FUN_008a0388;
+  *puVar2 = &PTR_LAB_008a248c;
+  *(undefined1 *)((int)this + 0x38) = 0;
+  *(undefined4 *)((int)this + 0x3c) = 0;
+  *(undefined1 *)((int)this + 0x50) = 0;
+  *(undefined1 *)((int)this + 0x51) = 0;
+  *(undefined ***)this = &PTR_DestructHud_BustedMeter_008a2484;
+  ExceptionList = local_c;
+  return this;
+}
+

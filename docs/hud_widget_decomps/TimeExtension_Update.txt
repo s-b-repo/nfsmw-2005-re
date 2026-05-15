@@ -1,0 +1,135 @@
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* HUD widget Update function (vtable slot[1] of TimeExtension). vtable @ 0x8a247c, dtor @ 0x5a0120.
+   Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9 candidate was
+   WRONG (had 0x57baf0). */
+
+void __thiscall UpdateHud_TimeExtension(void *this,int *param_1)
+
+{
+  char cVar1;
+  bool bVar2;
+  int iVar3;
+  int *piVar4;
+  int iVar5;
+  void *pvVar6;
+  undefined4 extraout_ECX;
+  undefined4 extraout_ECX_00;
+  undefined4 extraout_ECX_01;
+  undefined4 extraout_ECX_02;
+  ulonglong uVar7;
+  undefined4 uVar8;
+  undefined4 uVar9;
+  int **ppiVar10;
+  int local_54;
+  char local_50 [16];
+  undefined1 local_40 [64];
+  
+  if ((*(int *)((int)g_pGRaceStatus + 0x1968) != 0) &&
+     (iVar3 = GetEventRaceModeId(*(int *)((int)g_pGRaceStatus + 0x1968)), iVar3 == 4)) {
+    if (*(float *)((int)this + 0x40) <= _DAT_00890968) {
+      iVar3 = *(int *)((int)this + 0x48);
+      if (((iVar3 != 0) && (iVar3 != 0x7fffffff)) &&
+         (local_54 = DAT_00925ae8 - iVar3, _DAT_00890d3c <= (float)local_54 * _DAT_00890984)) {
+        *(undefined4 *)((int)this + 0x48) = 0;
+        *(int *)((int)this + 0x4c) = DAT_00925ae8;
+        return;
+      }
+      if (_DAT_00890968 < *(float *)((int)this + 0x3c)) {
+        if ((_DAT_00890bf8 < *(float *)((int)this + 0x3c)) &&
+           ((*(int *)((int)this + 0x44) == -0x7de19c88 || (*(int *)((int)this + 0x44) == 0x4f79cba2)
+            ))) {
+          *(undefined4 *)((int)this + 0x44) = 0;
+        }
+        iVar3 = DAT_00925ae8;
+        if (*(float *)((int)this + 0x3c) < _DAT_00890bf8 ==
+            (*(float *)((int)this + 0x3c) == _DAT_00890bf8)) {
+          piVar4 = (int *)((int)this + 0x4c);
+          iVar5 = FUN_00466bf0(piVar4);
+          if (iVar5 != 0) {
+            local_54 = iVar3 - *piVar4;
+            if ((float)local_54 * _DAT_00890984 < _DAT_00890d3c) {
+              *(undefined4 *)((int)this + 0x44) = 0x8ab83edb;
+              FUN_005fe090((int)g_pGRaceStatus);
+              FUN_0051a0a0(&local_54);
+              BuildEventReportPath(&local_54,local_50,4);
+              LookupUILocalizedTextWithFallback(local_50,0x171471b4);
+              FormatBoundedString((int)local_40,0x40,"%s\n%s");
+              ppiVar10 = &param_1;
+              pvVar6 = (void *)(**(code **)(*param_1 + 0x20))();
+              bVar2 = FUN_005790e0(pvVar6,(int *)ppiVar10);
+              if (!bVar2) {
+                return;
+              }
+              iVar3 = *param_1;
+              uVar9 = 3;
+              uVar8 = 0x609f6b15;
+              iVar5 = bStringHash((byte *)"TIMER_ICON");
+              (**(code **)(iVar3 + 4))
+                        (local_40,1,*(undefined4 *)((int)this + 0x44),iVar5,uVar8,uVar9);
+              return;
+            }
+            *piVar4 = 0;
+          }
+          *(undefined4 *)((int)this + 0x44) = 0;
+        }
+        else {
+          uVar7 = RoundFloat10ToInt64();
+          local_54 = (int)uVar7;
+          BuildEventReportPath(&local_54,local_50,4);
+          iVar3 = BinarySearchUIStringTable(extraout_ECX_01,0x862a0519);
+          if (iVar3 == 0) {
+            BinarySearchUIStringTable(extraout_ECX_02,0x9bb9ccc3);
+          }
+          FormatBoundedString((int)local_40,0x40,"%s!\n%s");
+          if (*(float *)((int)this + 0x3c) < _DAT_0089f298 ==
+              (*(float *)((int)this + 0x3c) == _DAT_0089f298)) {
+            if (*(float *)((int)this + 0x3c) < _DAT_00890bf8 ==
+                (*(float *)((int)this + 0x3c) == _DAT_00890bf8)) {
+              return;
+            }
+            if (*(int *)((int)this + 0x44) == 0) {
+              *(undefined4 *)((int)this + 0x44) = 0x821e6378;
+            }
+          }
+          else if ((*(int *)((int)this + 0x44) == 0) || (*(int *)((int)this + 0x44) == -0x7de19c88))
+          {
+            *(undefined4 *)((int)this + 0x44) = 0x4f79cba2;
+          }
+          ppiVar10 = &param_1;
+          pvVar6 = (void *)(**(code **)(*param_1 + 0x20))();
+          bVar2 = FUN_005790e0(pvVar6,(int *)ppiVar10);
+          if (bVar2) {
+            (**(code **)(*param_1 + 4))(local_40,1,*(undefined4 *)((int)this + 0x44),0,0,1);
+            return;
+          }
+        }
+      }
+    }
+    else {
+      iVar3 = (**(code **)(*param_1 + 0x20))();
+      piVar4 = (int *)_IList_Find(*(void **)(iVar3 + 4),(int *)IGenericMessage_GetIHandle);
+      if ((piVar4 != (int *)0x0) && (cVar1 = (**(code **)(*piVar4 + 0xc))(), cVar1 == '\0')) {
+        *(int *)((int)this + 0x48) = DAT_00925ae8;
+        FUN_005fe090((int)g_pGRaceStatus);
+        uVar7 = RoundFloat10ToInt64();
+        param_1 = (int *)uVar7;
+        BuildEventReportPath(&param_1,local_50,4);
+        iVar3 = BinarySearchUIStringTable(extraout_ECX,0x1c074e14);
+        if (iVar3 == 0) {
+          BinarySearchUIStringTable(extraout_ECX_00,0x9bb9ccc3);
+        }
+        FormatBoundedString((int)local_40,0x40,"%s\n+%s");
+        iVar3 = *piVar4;
+        uVar9 = 3;
+        uVar8 = 0x609f6b15;
+        iVar5 = bStringHash((byte *)"TIMER_ICON");
+        (**(code **)(iVar3 + 4))(local_40,0,0x8ab83edb,iVar5,uVar8,uVar9);
+        *(undefined4 *)((int)this + 0x40) = 0;
+        return;
+      }
+    }
+  }
+  return;
+}
+

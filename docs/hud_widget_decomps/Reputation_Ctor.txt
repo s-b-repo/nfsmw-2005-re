@@ -1,0 +1,48 @@
+
+/* HUD Reputation widget ctor (state 17). */
+
+void * __thiscall ConstructHud_Reputation(void *this,void *param_1,undefined4 param_2)
+
+{
+  undefined4 *puVar1;
+  void *pvVar2;
+  int iVar3;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_00872fb3;
+  local_c = ExceptionList;
+  iVar3 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar3 = iVar3;
+  *(int *)((int)this + 0xc) = iVar3;
+  *(undefined4 *)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x1000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar1 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar1 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_004060a0,puVar1);
+  *puVar1 = &PTR_FUN_008a040c;
+  local_4 = CONCAT31(local_4._1_3_,1);
+  *(undefined ***)this = &PTR_DestructHud_Reputation_008a1f78;
+  *puVar1 = &PTR_LAB_008a1f6c;
+  *(undefined4 *)((int)this + 0x38) = 0;
+  *(undefined4 *)((int)this + 0x3c) = 0;
+  pvVar2 = (void *)ProcessUIScreenInitChildren(this,0xea903012);
+  *(void **)((int)this + 0x48) = pvVar2;
+  RemoveSceneNodeByName(pvVar2,0x16a259,'\x01');
+  iVar3 = FindUITextFieldByName(*(byte **)((int)this + 0x10),0x9b0ac8ca);
+  *(int *)((int)this + 0x40) = iVar3;
+  iVar3 = FindUITextFieldByName(*(byte **)((int)this + 0x10),0x41a55ecf);
+  *(int *)((int)this + 0x44) = iVar3;
+  ExceptionList = local_c;
+  return this;
+}
+

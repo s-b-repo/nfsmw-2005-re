@@ -1,0 +1,42 @@
+
+/* HUD TimeExtension widget ctor (state 15). */
+
+void * __thiscall ConstructHud_TimeExtension(void *this,void *param_1,undefined4 param_2)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_00873368;
+  local_c = ExceptionList;
+  iVar1 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar1 = iVar1;
+  *(int *)((int)this + 0xc) = iVar1;
+  *(undefined4 *)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x2000000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar2 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar2 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_00565660,puVar2);
+  *puVar2 = &PTR_FUN_008a039c;
+  *(undefined4 *)((int)this + 0x3c) = 0;
+  *(undefined4 *)((int)this + 0x40) = 0;
+  *(undefined4 *)((int)this + 0x44) = 0;
+  *(undefined ***)this = &PTR_DestructHud_TimeExtension_008a247c;
+  *puVar2 = &PTR_LAB_008a2470;
+  *(undefined4 *)((int)this + 0x48) = 0;
+  *(undefined4 *)((int)this + 0x4c) = 0;
+  ExceptionList = local_c;
+  return this;
+}
+

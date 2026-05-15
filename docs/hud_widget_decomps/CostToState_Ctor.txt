@@ -1,0 +1,56 @@
+
+/* HUD CostToState widget ctor (state 19). */
+
+void * __thiscall ConstructHud_CostToState(void *this,void *param_1,undefined4 param_2)
+
+{
+  undefined4 *puVar1;
+  byte *pbVar2;
+  int iVar3;
+  int iVar4;
+  char cVar5;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_00872f73;
+  local_c = ExceptionList;
+  iVar3 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar3 = iVar3;
+  *(int *)((int)this + 0xc) = iVar3;
+  *(undefined4 *)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x1000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar1 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar1 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_005657b0,puVar1);
+  *puVar1 = &PTR_FUN_008a0400;
+  local_4 = CONCAT31(local_4._1_3_,1);
+  *(undefined ***)this = &PTR_DestructHud_CostToState_008a1f64;
+  *puVar1 = &PTR_LAB_008a1f58;
+  *(undefined1 *)((int)this + 0x38) = 0;
+  *(undefined4 *)((int)this + 0x3c) = 0;
+  *(undefined1 *)((int)this + 0x40) = 0;
+  *(undefined4 *)((int)this + 0x44) = 0;
+  iVar3 = CalculateDjbStringHashCaseInsensitive((byte *)0x8a04a8);
+  ProcessUIScreenInitChildren(this,iVar3);
+  pbVar2 = *(byte **)((int)this + 0x10);
+  cVar5 = '\x01';
+  iVar3 = CalculateDjbStringHashCaseInsensitive(&DAT_0089e384);
+  iVar4 = CalculateDjbStringHashCaseInsensitive((byte *)0x8a04a8);
+  SelectSceneChildByName(pbVar2,iVar4,iVar3,cVar5);
+  iVar3 = FindUITextFieldByName(*(byte **)((int)this + 0x10),0x3ff5f33c);
+  *(int *)((int)this + 0x48) = iVar3;
+  iVar3 = FindUITextFieldByName(*(byte **)((int)this + 0x10),0x64247241);
+  *(int *)((int)this + 0x4c) = iVar3;
+  ExceptionList = local_c;
+  return this;
+}
+

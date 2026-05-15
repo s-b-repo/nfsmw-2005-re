@@ -1,0 +1,32 @@
+
+/* HUD widget Update function (vtable slot[1] of Infractions). vtable @ 0x8a268c, dtor @ 0x5a1500.
+   Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9 candidate was
+   WRONG (had 0x569ac0). */
+
+void __fastcall UpdateHud_Infractions(int param_1)
+
+{
+  uint uVar1;
+  int iVar2;
+  int *piVar3;
+  
+  iVar2 = 0;
+  piVar3 = (int *)(param_1 + 0x3c);
+  do {
+    uVar1 = CheckActiveSceneChildIdEquals(*piVar3,0x16a259);
+    if ((char)uVar1 == '\0') {
+      return;
+    }
+    iVar2 = iVar2 + 1;
+    piVar3 = piVar3 + 1;
+  } while (iVar2 < 4);
+  uVar1 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x5079c8f8);
+  if (((char)uVar1 == '\0') &&
+     (uVar1 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x3826a28), (char)uVar1 == '\0'
+     )) {
+    return;
+  }
+  RemoveSceneNodeByName(*(void **)(param_1 + 0x38),0x33113ac,'\x01');
+  return;
+}
+

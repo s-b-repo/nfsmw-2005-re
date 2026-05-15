@@ -1,0 +1,238 @@
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* HUD widget Update function (vtable slot[1] of PursuitBoardInRace). vtable @ 0x8a2468, dtor @
+   0x59ffb0. Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9
+   candidate was WRONG (had 0x595af0). */
+
+void __fastcall UpdateHud_PursuitBoardInRace(int param_1)
+
+{
+  float fVar1;
+  uint uVar2;
+  ulonglong uVar3;
+  void *pvVar4;
+  int iVar5;
+  undefined4 local_24;
+  float local_20;
+  float local_1c;
+  float local_18;
+  float local_14;
+  char local_10 [16];
+  
+  if (*(char *)(param_1 + 0x38) == '\0') {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x70),0x5079c8f8);
+    if ((char)uVar2 != '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x70),0x33113ac,'\x01');
+    }
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x74),0x33113ac);
+    if (((char)uVar2 == '\0') &&
+       (uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x74),0x16a259),
+       (char)uVar2 == '\0')) {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x74),0x33113ac,'\x01');
+    }
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x80),0x5079c8f8);
+    if (((char)uVar2 != '\0') ||
+       (uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x80),0x13f51124),
+       (char)uVar2 != '\0')) {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x80),0x33113ac,'\x01');
+    }
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x78),0x5079c8f8);
+    if ((char)uVar2 == '\0') {
+      return;
+    }
+    RemoveSceneNodeByName(*(void **)(param_1 + 0x78),0x33113ac,'\x01');
+    return;
+  }
+  local_24 = 0;
+  uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x70),0x5079c8f8);
+  if ((char)uVar2 == '\0') {
+    RemoveSceneNodeByName(*(void **)(param_1 + 0x70),0x5079c8f8,'\x01');
+  }
+  uVar3 = RoundFloat10ToInt64();
+  local_24 = (undefined4)uVar3;
+  BuildEventReportPath(&local_24,local_10,4);
+  ResolveUIDataValue(*(int *)(param_1 + 0x88),&param_2_008941f8);
+  ResolveUIDataValue(*(int *)(param_1 + 0x9c),&DAT_0089c2d0);
+  uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x7c),0x5079c8f8);
+  if ((char)uVar2 == '\0') {
+    RemoveSceneNodeByName(*(void **)(param_1 + 0x7c),0x5079c8f8,'\x01');
+  }
+  if (*(float *)(param_1 + 0x40) < _DAT_00890da8 != (*(float *)(param_1 + 0x40) == _DAT_00890da8)) {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x80),0x13f51124);
+    if ((char)uVar2 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x74),-0x6d68af9b,'\x01');
+      EntityRouter_DispatchByIdRange(g_pNFSMixMaster,0xc);
+    }
+    SetUITextNodeWithFormatting(*(int *)(param_1 + 0xb4),&local_18,&local_1c);
+    iVar5 = *(int *)(param_1 + 0xb4);
+    local_1c = (_DAT_0089096c - *(float *)(param_1 + 0x50) / *(float *)(param_1 + 0x54)) *
+               *(float *)(param_1 + 0xd4);
+    FEObject_GetSize(iVar5,&local_14,&local_20);
+    FEObject_SetSize(iVar5,local_1c,local_20);
+    pvVar4 = *(void **)(param_1 + 0xb4);
+    SetUITextNodeWithFormatting((int)pvVar4,&local_14,&local_1c);
+    FUN_00524cc0(pvVar4,local_18,local_1c);
+    if (_DAT_00890968 < *(float *)(param_1 + 0x3c)) {
+      uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xbc),0x5079c8f8);
+      if ((char)uVar2 != '\0') {
+        return;
+      }
+      RemoveSceneNodeByName(*(void **)(param_1 + 0xbc),0x5079c8f8,'\x01');
+      return;
+    }
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xbc),0x5079c8f8);
+    if ((char)uVar2 == '\0') {
+      return;
+    }
+    RemoveSceneNodeByName(*(void **)(param_1 + 0xbc),0x33113ac,'\x01');
+    return;
+  }
+  uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x80),0x13f51124);
+  if ((char)uVar2 == '\0') {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x74),0x16a259);
+    if (((char)uVar2 != '\0') ||
+       (uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x74),0x33113ac),
+       (char)uVar2 != '\0')) {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x74),0x5079c8f8,'\x01');
+    }
+  }
+  else {
+    RemoveSceneNodeByName(*(void **)(param_1 + 0x80),-0x6d68af9b,'\x01');
+    EntityRouter_DispatchByIdRange(g_pNFSMixMaster,0xc);
+  }
+  uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xbc),0x5079c8f8);
+  if ((char)uVar2 != '\0') {
+    RemoveSceneNodeByName(*(void **)(param_1 + 0xbc),0x33113ac,'\x01');
+  }
+  ResolveUIDataValue(*(int *)(param_1 + 0x90),&DAT_0089c2d0);
+  ResolveUIDataValue(*(int *)(param_1 + 0x94),&DAT_0089c2d0);
+  ResolveUIDataValue(*(int *)(param_1 + 0x98),&DAT_0089c2d0);
+  if (*(float *)(param_1 + 0x44) <= _DAT_00890968) {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xb8),0x33113ac);
+    if ((char)uVar2 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0xb8),0x33113ac,'\x01');
+    }
+  }
+  else {
+    if (*(float *)(param_1 + 0x44) <= _DAT_00890bf8) {
+      uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xb8),0x26ded57);
+      if ((char)uVar2 == '\0') {
+        pvVar4 = *(void **)(param_1 + 0xb8);
+        iVar5 = 0x26ded57;
+        goto LAB_0057b23a;
+      }
+    }
+    else {
+      uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xb8),0x5079c8f8);
+      if ((char)uVar2 == '\0') {
+        pvVar4 = *(void **)(param_1 + 0xb8);
+        iVar5 = 0x5079c8f8;
+LAB_0057b23a:
+        RemoveSceneNodeByName(pvVar4,iVar5,'\x01');
+      }
+    }
+    uVar3 = RoundFloat10ToInt64();
+    local_24 = (undefined4)uVar3;
+    BuildEventReportPath(&local_24,local_10,4);
+    ResolveUIDataValue(*(int *)(param_1 + 0x8c),&param_2_008941f8);
+  }
+  FUN_00515140(*(int *)(param_1 + 0xa0),&local_20,&local_14);
+  local_1c = _DAT_00890968;
+  if (_DAT_008933d4 < *(float *)(param_1 + 0x40)) {
+    fVar1 = *(float *)(param_1 + 0x40) - _DAT_008933d4;
+    local_1c = fVar1 + fVar1;
+  }
+  local_1c = local_1c * *(float *)(param_1 + 0xc0);
+  iVar5 = *(int *)(param_1 + 0xa0);
+  FEObject_GetSize(iVar5,&local_14,&local_18);
+  FEObject_SetSize(iVar5,local_1c,local_18);
+  pvVar4 = *(void **)(param_1 + 0xa0);
+  FUN_00515140((int)pvVar4,&local_14,&local_18);
+  FUN_00524e20(pvVar4,local_20,local_18);
+  if (*(float *)(param_1 + 0x40) <= _DAT_008933d4) {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xa0),0x1744b3);
+    if ((char)uVar2 == '\0') {
+      pvVar4 = *(void **)(param_1 + 0xa0);
+      iVar5 = 0x1744b3;
+      goto LAB_0057b3a3;
+    }
+  }
+  else {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xa0),0x26ded57);
+    if ((char)uVar2 == '\0') {
+      pvVar4 = *(void **)(param_1 + 0xa0);
+      iVar5 = 0x26ded57;
+LAB_0057b3a3:
+      RemoveSceneNodeByName(pvVar4,iVar5,'\x01');
+    }
+  }
+  FUN_00515140(*(int *)(param_1 + 0xa4),&local_20,&local_14);
+  local_1c = _DAT_00899124;
+  if ((*(float *)(param_1 + 0x40) <= _DAT_008933d4) &&
+     (local_1c = _DAT_00890968, _DAT_0089f24c < *(float *)(param_1 + 0x40))) {
+    local_1c = (*(float *)(param_1 + 0x40) + *(float *)(param_1 + 0x40)) - _DAT_0089f24c;
+  }
+  local_1c = local_1c * *(float *)(param_1 + 0xc4);
+  iVar5 = *(int *)(param_1 + 0xa4);
+  FEObject_GetSize(iVar5,&local_14,&local_18);
+  FEObject_SetSize(iVar5,local_1c,local_18);
+  pvVar4 = *(void **)(param_1 + 0xa4);
+  FUN_00515140((int)pvVar4,&local_14,&local_18);
+  FUN_00524e20(pvVar4,local_20,local_18);
+  if ((_DAT_0089f24c <= *(float *)(param_1 + 0x40)) || (*(float *)(param_1 + 0x40) <= _DAT_00891698)
+     ) {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xa8),0x1ca7c0);
+    if ((char)uVar2 != '\0') goto LAB_0057b4ce;
+    pvVar4 = *(void **)(param_1 + 0xa8);
+    iVar5 = 0x1ca7c0;
+  }
+  else {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xa8),0x3826a28);
+    if ((char)uVar2 != '\0') goto LAB_0057b4ce;
+    pvVar4 = *(void **)(param_1 + 0xa8);
+    iVar5 = 0x3826a28;
+  }
+  RemoveSceneNodeByName(pvVar4,iVar5,'\x01');
+LAB_0057b4ce:
+  SetUITextNodeWithFormatting(*(int *)(param_1 + 0xac),&local_20,&local_14);
+  local_1c = _DAT_0089096c;
+  if ((_DAT_00891068 <= *(float *)(param_1 + 0x40)) &&
+     (local_1c = _DAT_00890968, *(float *)(param_1 + 0x40) < _DAT_00891698)) {
+    local_1c = *(float *)(param_1 + 0x40) * _DAT_00890e94 - _DAT_0089f24c;
+  }
+  local_1c = local_1c * *(float *)(param_1 + 0xcc);
+  iVar5 = *(int *)(param_1 + 0xac);
+  FEObject_GetSize(iVar5,&local_14,&local_18);
+  FEObject_SetSize(iVar5,local_1c,local_18);
+  pvVar4 = *(void **)(param_1 + 0xac);
+  SetUITextNodeWithFormatting((int)pvVar4,&local_14,&local_18);
+  FUN_00524cc0(pvVar4,local_20,local_18);
+  SetUITextNodeWithFormatting(*(int *)(param_1 + 0xb0),&local_20,&local_14);
+  local_1c = _DAT_00890968;
+  if (*(float *)(param_1 + 0x40) < _DAT_00891068) {
+    local_1c = (*(float *)(param_1 + 0x40) + _DAT_008933d4) * _DAT_00890e94;
+  }
+  local_1c = local_1c * *(float *)(param_1 + 0xd0);
+  iVar5 = *(int *)(param_1 + 0xb0);
+  FEObject_GetSize(iVar5,&local_14,&local_18);
+  FEObject_SetSize(iVar5,local_1c,local_18);
+  pvVar4 = *(void **)(param_1 + 0xb0);
+  SetUITextNodeWithFormatting((int)pvVar4,&local_14,&local_18);
+  FUN_00524cc0(pvVar4,local_20,local_18);
+  if (_DAT_00891068 <= *(float *)(param_1 + 0x40)) {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xb0),0x1744b3);
+    if ((char)uVar2 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0xb0),0x1744b3,'\x01');
+      return;
+    }
+  }
+  else {
+    uVar2 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0xb0),0x26ded57);
+    if ((char)uVar2 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0xb0),0x26ded57,'\x01');
+      return;
+    }
+  }
+  return;
+}
+

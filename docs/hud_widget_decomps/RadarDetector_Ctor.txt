@@ -1,0 +1,91 @@
+
+/* HUD RadarDetector widget ctor (state 25). */
+
+void * __thiscall ConstructHud_RadarDetector(void *this,void *param_1,byte *param_2)
+
+{
+  int iVar1;
+  undefined4 *puVar2;
+  int iVar3;
+  int *piVar4;
+  int *piVar5;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_00872ef3;
+  local_c = ExceptionList;
+  iVar1 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar1 = iVar1;
+  *(int *)((int)this + 0xc) = iVar1;
+  *(byte **)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x200000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar2 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar2 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_00565a30,puVar2);
+  *puVar2 = &PTR_FUN_008a0468;
+  *(undefined ***)this = &PTR_DestructHud_RadarDetector_008a1f3c;
+  *puVar2 = &PTR_LAB_008a1f2c;
+  *(undefined4 *)((int)this + 0x54) = 0;
+  *(undefined4 *)((int)this + 0x58) = 0;
+  *(undefined4 *)((int)this + 0x5c) = 0;
+  *(undefined4 *)((int)this + 0x60) = 0x3e99999a;
+  *(undefined1 *)((int)this + 100) = 0;
+  *(undefined1 *)((int)this + 0x65) = 0;
+  local_4 = CONCAT31(local_4._1_3_,1);
+  *(undefined4 *)((int)this + 0x68) = 0;
+  iVar3 = ProcessUIScreenInitChildren(this,0x62743f5);
+  *(int *)((int)this + 0x38) = iVar3;
+  iVar3 = FEObject_GetObject(param_2,0x69aa01e7);
+  *(int *)((int)this + 0x3c) = iVar3;
+  iVar3 = FEObject_GetObject(param_2,0x9f59065a);
+  *(int *)((int)this + 0x40) = iVar3;
+  iVar3 = CalculateDjbStringHashCaseInsensitive((byte *)"Radar_DirectionArrow");
+  iVar3 = FEObject_GetObject(param_2,iVar3);
+  *(int *)((int)this + 0x44) = iVar3;
+  iVar3 = CalculateDjbStringHashCaseInsensitive((byte *)"Radar_Icon");
+  iVar3 = FEObject_GetObject(param_2,iVar3);
+  *(int *)((int)this + 0x48) = iVar3;
+  iVar3 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x839e7d77);
+  if (iVar3 != 0) {
+    piVar4 = (int *)PopAudioCommandBlock();
+    if (piVar4 == (int *)0x0) {
+      piVar4 = (int *)0x0;
+    }
+    else {
+      piVar4[2] = iVar3;
+    }
+    puVar2 = *(undefined4 **)((int)this + 0xc);
+    *puVar2 = piVar4;
+    *(int **)((int)this + 0xc) = piVar4;
+    piVar4[1] = (int)puVar2;
+    *piVar4 = iVar1;
+  }
+  *(int *)((int)this + 0x4c) = iVar3;
+  iVar3 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x9ee06631);
+  if (iVar3 != 0) {
+    piVar5 = (int *)PopAudioCommandBlock();
+    piVar4 = (int *)0x0;
+    if (piVar5 != (int *)0x0) {
+      piVar5[2] = iVar3;
+      piVar4 = piVar5;
+    }
+    puVar2 = *(undefined4 **)((int)this + 0xc);
+    *puVar2 = piVar4;
+    *(int **)((int)this + 0xc) = piVar4;
+    piVar4[1] = (int)puVar2;
+    *piVar4 = iVar1;
+  }
+  *(int *)((int)this + 0x50) = iVar3;
+  ExceptionList = local_c;
+  return this;
+}
+

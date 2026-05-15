@@ -1,0 +1,67 @@
+
+/* HUD MenuZoneTrigger widget ctor (state 23). */
+
+void * __thiscall ConstructHud_MenuZoneTrigger(void *this,void *param_1,undefined4 param_2)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  int *piVar3;
+  int iVar4;
+  int *piVar5;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_00873433;
+  local_c = ExceptionList;
+  iVar4 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar4 = iVar4;
+  *(int *)((int)this + 0xc) = iVar4;
+  *(undefined4 *)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x400000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar1 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar1 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_005659c0,puVar1);
+  *puVar1 = &PTR_FUN_008a043c;
+  *(undefined ***)this = &PTR_DestructHud_MenuZoneTrigger_008a2524;
+  *puVar1 = &PTR_LAB_008a24f8;
+  *(undefined4 *)((int)this + 0x44) = 0;
+  *(undefined4 *)((int)this + 0x48) = 0;
+  *(undefined1 *)((int)this + 0x4c) = 0;
+  *(undefined1 *)((int)this + 0x4d) = 0;
+  local_4 = CONCAT31(local_4._1_3_,1);
+  *(undefined4 *)((int)this + 0x50) = 0;
+  iVar2 = CalculateDjbStringHashCaseInsensitive((byte *)"Engage_Mechanic");
+  iVar2 = ProcessUIScreenInitChildren(this,iVar2);
+  *(int *)((int)this + 0x38) = iVar2;
+  iVar2 = CalculateDjbStringHashCaseInsensitive((byte *)"EventIcon");
+  iVar2 = FindUIIntFieldByName(*(byte **)((int)this + 0x10),iVar2);
+  if (iVar2 != 0) {
+    piVar3 = (int *)PopAudioCommandBlock();
+    piVar5 = (int *)0x0;
+    if (piVar3 != (int *)0x0) {
+      piVar3[2] = iVar2;
+      piVar5 = piVar3;
+    }
+    puVar1 = *(undefined4 **)((int)this + 0xc);
+    *puVar1 = piVar5;
+    *(int **)((int)this + 0xc) = piVar5;
+    piVar5[1] = (int)puVar1;
+    *piVar5 = iVar4;
+  }
+  *(int *)((int)this + 0x3c) = iVar2;
+  iVar4 = ProcessUIScreenInitChildren(this,0xda8141d4);
+  *(int *)((int)this + 0x40) = iVar4;
+  ExceptionList = local_c;
+  return this;
+}
+

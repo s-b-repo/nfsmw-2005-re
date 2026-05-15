@@ -1,0 +1,181 @@
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* HUD widget Update function (vtable slot[1] of RadarDetector). vtable @ 0x8a1f3c, dtor @ 0x59ce10.
+   Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9 candidate was
+   WRONG (had 0x59cdf0). */
+
+void __fastcall UpdateHud_RadarDetector(int param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  int iVar3;
+  uint uVar4;
+  uint *puVar5;
+  void *pvVar6;
+  int local_1c [2];
+  undefined1 local_14 [20];
+  
+  iVar3 = GetGameAudioMasterPtr();
+  if ((iVar3 == 2) && (*(char *)(*(int *)(DAT_0091cf90 + 0x10) + 0x39) != '\0')) {
+    uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x4c),0x16a259);
+    if ((char)uVar4 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x4c),0x16a259,'\x01');
+    }
+    if ((*(char *)(param_1 + 100) == '\0') || (*(char *)(param_1 + 0x65) != '\0')) {
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        pvVar6 = *(void **)(param_1 + 0x38);
+        iVar3 = 0x1744b3;
+        goto LAB_0056620f;
+      }
+    }
+    else {
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x16a259);
+      if ((char)uVar4 == '\0') {
+        pvVar6 = *(void **)(param_1 + 0x38);
+        iVar3 = 0x16a259;
+LAB_0056620f:
+        RemoveSceneNodeByName(pvVar6,iVar3,'\x01');
+      }
+    }
+    uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x50),0x5079c8f8);
+    if ((char)uVar4 != '\0') goto LAB_00566382;
+    pvVar6 = *(void **)(param_1 + 0x50);
+    iVar3 = 0x5079c8f8;
+  }
+  else {
+    uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x50),0x16a259);
+    if ((char)uVar4 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x50),0x16a259,'\x01');
+    }
+    if ((*(char *)(param_1 + 100) == '\0') || (*(char *)(param_1 + 0x65) != '\0')) {
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x4c),0x5079c8f8);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x4c),0x5079c8f8,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x5079c8f8);
+      if ((char)uVar4 != '\0') goto LAB_00566382;
+      pvVar6 = *(void **)(param_1 + 0x38);
+      iVar3 = 0x5079c8f8;
+    }
+    else {
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x4c),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x4c),0x33113ac);
+        if (((char)uVar4 == '\0') &&
+           (uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x4c),0x16a259),
+           (char)uVar4 == '\0')) {
+          iVar3 = 0x33113ac;
+          goto LAB_005662cd;
+        }
+      }
+      else {
+        iVar3 = 0x16a259;
+LAB_005662cd:
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x4c),iVar3,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x38),0x33113ac);
+        if (((char)uVar4 != '\0') ||
+           (uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x4c),0x16a259),
+           (char)uVar4 != '\0')) goto LAB_00566382;
+        pvVar6 = *(void **)(param_1 + 0x38);
+        iVar3 = 0x33113ac;
+      }
+      else {
+        pvVar6 = *(void **)(param_1 + 0x38);
+        iVar3 = 0x16a259;
+      }
+    }
+  }
+  RemoveSceneNodeByName(pvVar6,iVar3,'\x01');
+LAB_00566382:
+  if ((*(float *)(param_1 + 0x54) <= _DAT_00890968) ||
+     ((*(char *)(param_1 + 100) != '\0' && (*(char *)(param_1 + 0x65) == '\0')))) {
+    if ((*(int *)(param_1 + 0x68) != 0) && (*(int *)(param_1 + 0x68) != 0x7fffffff)) {
+      *(undefined4 *)(param_1 + 0x68) = 0;
+    }
+    local_1c[0] = 0;
+    local_1c[1] = 0x3f800000;
+    FUN_00524c00(*(void **)(param_1 + 0x3c),local_1c,0);
+    FUN_00524c00(*(void **)(param_1 + 0x40),local_1c,0);
+    uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x44),0x16a259);
+    if ((char)uVar4 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x44),0x16a259,'\x01');
+    }
+    uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x48),0x1744b3);
+    if ((char)uVar4 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x48),0x1744b3,'\x01');
+    }
+  }
+  else {
+    fVar1 = _DAT_008f3aa8;
+    if (_DAT_008f3aa8 < *(float *)(param_1 + 0x54)) {
+      fVar1 = *(float *)(param_1 + 0x54);
+    }
+    if ((*(int *)(param_1 + 0x68) == 0) || (*(int *)(param_1 + 0x68) == 0x7fffffff)) {
+      *(int *)(param_1 + 0x68) = DAT_00925ae8;
+    }
+    fVar2 = *(float *)(param_1 + 0x60) + _DAT_0089f24c;
+    *(float *)(param_1 + 0x60) = fVar2;
+    if (_DAT_0089096c < fVar2) {
+      *(undefined4 *)(param_1 + 0x60) = 0x3f800000;
+    }
+    local_1c[0] = DAT_00925ae8 - *(int *)(param_1 + 0x68);
+    if (fVar1 * _DAT_0089f250 < (float)local_1c[0] * _DAT_00890984) {
+      *(int *)(param_1 + 0x68) = DAT_00925ae8;
+      *(undefined4 *)(param_1 + 0x60) = 0x3e99999a;
+      uVar4 = stringhash32("Snd");
+      puVar5 = FUN_00469da0(local_14,0);
+      puVar5[1] = uVar4;
+      FUN_0065faf0(puVar5);
+    }
+    local_1c[0] = *(int *)(param_1 + 0x60);
+    local_1c[1] = 0x3f800000;
+    FUN_00524c00(*(void **)(param_1 + 0x3c),local_1c,0);
+    FUN_00524c00(*(void **)(param_1 + 0x40),local_1c,0);
+    FEObject_SetRotationZ(*(void **)(param_1 + 0x44));
+    if (*(int *)(param_1 + 0x5c) == 2) {
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x44),0xfa44e387);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x44),-0x5bb1c79,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x48),0xfa44e387);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x48),-0x5bb1c79,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x3c),0xfa44e387);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x3c),-0x5bb1c79,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x40),0xfa44e387);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x40),-0x5bb1c79,'\x01');
+        return;
+      }
+    }
+    else {
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x44),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x44),0x1744b3,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x48),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x48),0x1744b3,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x3c),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x3c),0x1744b3,'\x01');
+      }
+      uVar4 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x40),0x1744b3);
+      if ((char)uVar4 == '\0') {
+        RemoveSceneNodeByName(*(void **)(param_1 + 0x40),0x1744b3,'\x01');
+        return;
+      }
+    }
+  }
+  return;
+}
+

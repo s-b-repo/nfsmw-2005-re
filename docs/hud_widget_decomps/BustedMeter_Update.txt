@@ -1,0 +1,11 @@
+
+/* HUD widget Update function (vtable slot[1] of BustedMeter). vtable @ 0x8a2484, dtor @ 0x5a02d0.
+   Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9 candidate was
+   WRONG (had None). */
+
+void UpdateHud_BustedMeter(void)
+
+{
+  return;
+}
+

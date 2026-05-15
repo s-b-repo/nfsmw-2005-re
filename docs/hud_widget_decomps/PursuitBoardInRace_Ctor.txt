@@ -1,0 +1,136 @@
+
+/* HUD PursuitBoard (in-race) widget ctor (state 20). */
+
+void * __thiscall ConstructHud_PursuitBoardInRace(void *this,void *param_1,undefined4 param_2)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  int *piVar3;
+  int *piVar4;
+  int iVar5;
+  void *local_c;
+  undefined1 *puStack_8;
+  undefined4 local_4;
+  
+  puStack_8 = &LAB_00873333;
+  local_c = ExceptionList;
+  iVar5 = (int)this + 8;
+  ExceptionList = &local_c;
+  *(undefined ***)this = &PTR_FUN_008a1e80;
+  *(int *)iVar5 = iVar5;
+  *(int *)((int)this + 0xc) = iVar5;
+  *(undefined4 *)((int)this + 0x10) = param_2;
+  *(undefined4 *)((int)this + 0x18) = 0x100000;
+  *(undefined4 *)((int)this + 0x1c) = 0;
+  *(undefined4 *)((int)this + 0x20) = 0;
+  *(undefined4 *)((int)this + 0x24) = 0;
+  *(undefined1 *)((int)this + 0x28) = 0;
+  puVar1 = (undefined4 *)((int)this + 0x30);
+  local_4 = 0;
+  *puVar1 = &PTR_FUN_00890970;
+  *(void **)((int)this + 0x34) = param_1;
+  InsertOrAssignTypeRegistry(param_1,(undefined4 *)&LAB_00565510,puVar1);
+  *puVar1 = &PTR_FUN_008a0320;
+  local_4 = CONCAT31(local_4._1_3_,1);
+  *(undefined ***)this = &PTR_DestructHud_PursuitBoardInRace_008a2468;
+  *puVar1 = &PTR_FUN_008a2428;
+  *(undefined1 *)((int)this + 0x38) = 0;
+  *(undefined1 *)((int)this + 0x39) = 0;
+  *(undefined4 *)((int)this + 0x3c) = 0;
+  *(undefined4 *)((int)this + 0x40) = 0;
+  *(undefined4 *)((int)this + 0x44) = 0;
+  *(undefined4 *)((int)this + 0x4c) = 0;
+  *(undefined4 *)((int)this + 0x50) = 0;
+  *(undefined4 *)((int)this + 0x54) = 0x42700000;
+  *(undefined4 *)((int)this + 0x58) = 0;
+  *(undefined4 *)((int)this + 0x5c) = 0;
+  *(undefined4 *)((int)this + 0x60) = 0;
+  *(undefined4 *)((int)this + 100) = 0;
+  *(undefined1 *)((int)this + 0x68) = 0;
+  *(undefined4 *)((int)this + 0x6c) = 0;
+  iVar2 = ProcessUIScreenInitChildren(this,0xde89e070);
+  *(int *)((int)this + 0x70) = iVar2;
+  iVar2 = ProcessUIScreenInitChildren(this,0x7b422ba3);
+  *(int *)((int)this + 0x74) = iVar2;
+  iVar2 = ProcessUIScreenInitChildren(this,0xe0b1430b);
+  *(int *)((int)this + 0x78) = iVar2;
+  iVar2 = ProcessUIScreenInitChildren(this,0x8674e6d4);
+  *(int *)((int)this + 0x7c) = iVar2;
+  iVar2 = ProcessUIScreenInitChildren(this,0x84a226ec);
+  *(int *)((int)this + 0x80) = iVar2;
+  iVar2 = ProcessUIScreenInitChildren(this,0x6a144066);
+  *(int *)((int)this + 0x84) = iVar2;
+  iVar2 = FindUITextFieldByName(*(byte **)((int)this + 0x10),0x3c165f39);
+  if (iVar2 != 0) {
+    piVar3 = (int *)PopAudioCommandBlock();
+    if (piVar3 == (int *)0x0) {
+      piVar3 = (int *)0x0;
+    }
+    else {
+      piVar3[2] = iVar2;
+    }
+    puVar1 = *(undefined4 **)((int)this + 0xc);
+    *puVar1 = piVar3;
+    *(int **)((int)this + 0xc) = piVar3;
+    piVar3[1] = (int)puVar1;
+    *piVar3 = iVar5;
+  }
+  iVar2 = FindUITextFieldByName(*(byte **)((int)this + 0x10),0xbee44775);
+  if (iVar2 != 0) {
+    piVar4 = (int *)PopAudioCommandBlock();
+    piVar3 = (int *)0x0;
+    if (piVar4 != (int *)0x0) {
+      piVar4[2] = iVar2;
+      piVar3 = piVar4;
+    }
+    puVar1 = *(undefined4 **)((int)this + 0xc);
+    *puVar1 = piVar3;
+    *(int **)((int)this + 0xc) = piVar3;
+    piVar3[1] = (int)puVar1;
+    *piVar3 = iVar5;
+  }
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0xfc39cb0a);
+  *(int *)((int)this + 0x88) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0xbee44775);
+  *(int *)((int)this + 0x8c) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x814918ca);
+  *(int *)((int)this + 0x90) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0xa16f9f1e);
+  *(int *)((int)this + 0x94) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x5fa70d4c);
+  *(int *)((int)this + 0x98) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x875e92eb);
+  *(int *)((int)this + 0x9c) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0xe0e0169b);
+  *(int *)((int)this + 0xa0) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x8eeebd33);
+  *(int *)((int)this + 0xa4) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x47a4e2a9);
+  *(int *)((int)this + 0xa8) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x8e3653a6);
+  *(int *)((int)this + 0xac) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x30f39a6f);
+  *(int *)((int)this + 0xb0) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0xcf817638);
+  *(int *)((int)this + 0xb4) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x8c20a763);
+  *(int *)((int)this + 0xb8) = iVar5;
+  iVar5 = FEObject_GetObject(*(byte **)((int)this + 0x10),0x5c2a4f20);
+  *(int *)((int)this + 0xbc) = iVar5;
+  *(undefined4 *)((int)this + 0xc0) =
+       *(undefined4 *)(*(int *)(*(int *)((int)this + 0xa0) + 0x2c) + 0x38);
+  *(undefined4 *)((int)this + 0xc4) =
+       *(undefined4 *)(*(int *)(*(int *)((int)this + 0xa4) + 0x2c) + 0x38);
+  *(undefined4 *)((int)this + 200) =
+       *(undefined4 *)(*(int *)(*(int *)((int)this + 0xa8) + 0x2c) + 0x38);
+  *(undefined4 *)((int)this + 0xcc) =
+       *(undefined4 *)(*(int *)(*(int *)((int)this + 0xac) + 0x2c) + 0x38);
+  *(undefined4 *)((int)this + 0xd0) =
+       *(undefined4 *)(*(int *)(*(int *)((int)this + 0xb0) + 0x2c) + 0x38);
+  *(undefined4 *)((int)this + 0xd4) =
+       *(undefined4 *)(*(int *)(*(int *)((int)this + 0xb4) + 0x2c) + 0x38);
+  ExceptionList = local_c;
+  return this;
+}
+

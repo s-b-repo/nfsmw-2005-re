@@ -1,0 +1,82 @@
+
+/* WARNING: Globals starting with '_' overlap smaller symbols at the same address */
+/* HUD widget Update function (vtable slot[1] of HeatMeterInRace). vtable @ 0x8a1f50, dtor @
+   0x59d010. Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9
+   candidate was WRONG (had 0x5668d0). */
+
+void __fastcall UpdateHud_HeatMeterInRace(int param_1)
+
+{
+  float fVar1;
+  float fVar2;
+  uint uVar3;
+  ulonglong uVar4;
+  void *pvVar5;
+  int iVar6;
+  float local_4;
+  
+  fVar1 = _DAT_00890968;
+  local_4 = *(float *)(param_1 + 0x40);
+  *(undefined1 *)(param_1 + 0x38) = 0;
+  if (fVar1 < *(float *)(param_1 + 0x3c)) {
+    local_4 = *(float *)(param_1 + 0x3c);
+  }
+  uVar4 = RoundFloat10ToInt64();
+  fVar1 = local_4 - (float)(int)uVar4;
+  fVar2 = fVar1;
+  if (_DAT_008933d4 < fVar1) {
+    fVar2 = _DAT_008933d4;
+  }
+  FUN_00514fb0(*(int *)(param_1 + 0x50),_DAT_008a04a4 - (fVar2 + fVar2) * _DAT_008a04a4);
+  fVar2 = _DAT_00890968;
+  if (_DAT_008933d4 < fVar1) {
+    fVar2 = fVar1 - _DAT_008933d4;
+  }
+  FUN_00514fb0(*(int *)(param_1 + 0x54),_DAT_008a04a4 - (fVar2 + fVar2) * _DAT_008a04a4);
+  if (local_4 < _DAT_0089096c) {
+    FEObject_SetVisible(*(int *)(param_1 + 0x44));
+    goto LAB_005667f6;
+  }
+  if (_DAT_008933d4 <= fVar1) {
+    uVar3 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x44),0x1744b3);
+    if ((char)uVar3 == '\0') {
+      pvVar5 = *(void **)(param_1 + 0x44);
+      iVar6 = 0x1744b3;
+      goto LAB_005667c0;
+    }
+  }
+  else {
+    uVar3 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x44),0x41e1fedc);
+    if ((char)uVar3 == '\0') {
+      pvVar5 = *(void **)(param_1 + 0x44);
+      iVar6 = 0x41e1fedc;
+LAB_005667c0:
+      RemoveSceneNodeByName(pvVar5,iVar6,'\x01');
+    }
+  }
+  SceneNode_SetFormattedTextProperty(*(byte **)(param_1 + 0x10),0x7f91da62,&DAT_008a04a0);
+  FEObject_SetVisible(*(int *)(param_1 + 0x44));
+LAB_005667f6:
+  if (local_4 <= _DAT_00890968) {
+    uVar3 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x48),0x1744b3);
+    if ((char)uVar3 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x48),0x1744b3,'\x01');
+    }
+  }
+  else if (fVar1 <= _DAT_00891050) {
+    uVar3 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x48),0x77031c70);
+    if ((char)uVar3 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x48),0x77031c70,'\x01');
+      return;
+    }
+  }
+  else {
+    uVar3 = CheckActiveSceneChildIdEquals(*(int *)(param_1 + 0x48),0xda600155);
+    if ((char)uVar3 == '\0') {
+      RemoveSceneNodeByName(*(void **)(param_1 + 0x48),-0x259ffeab,'\x01');
+      return;
+    }
+  }
+  return;
+}
+

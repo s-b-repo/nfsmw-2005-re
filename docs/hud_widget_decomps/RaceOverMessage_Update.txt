@@ -1,0 +1,35 @@
+
+/* HUD widget Update function (vtable slot[1] of RaceOverMessage). vtable @ 0x8a20a4, dtor @
+   0x59e1b0. Verified wave-11 by reading 2-slot vtable: slot[0]=dtor, slot[1]=Update. Wave-9
+   candidate was WRONG (had 0x59e190). */
+
+void __thiscall UpdateHud_RaceOverMessage(void *this,int *param_1)
+
+{
+  undefined4 *puVar1;
+  int iVar2;
+  int *piVar3;
+  undefined4 extraout_ECX;
+  undefined4 extraout_ECX_00;
+  
+  if (*(char *)((int)this + 0x39) != '\0') {
+    iVar2 = (**(code **)(*param_1 + 0x2c))();
+    if ((((iVar2 * 0x70 != -0x9195e0) &&
+         (puVar1 = (undefined4 *)(&player_entity_slot_array_head)[iVar2 * 0x1c],
+         puVar1 != &player_entity_slot_array_head + iVar2 * 0x1c)) && (puVar1 != (undefined4 *)0x0))
+       && ((puVar1 != (undefined4 *)0x4 && (puVar1[2] == 1)))) {
+      *(undefined1 *)((int)this + 0x39) = 0;
+      iVar2 = (**(code **)(*param_1 + 0x20))();
+      piVar3 = (int *)_IList_Find(*(void **)(iVar2 + 4),(int *)IGenericMessage_GetIHandle);
+      if (piVar3 != (int *)0x0) {
+        iVar2 = BinarySearchUIStringTable(extraout_ECX,0x4ba0d22f);
+        if (iVar2 == 0) {
+          iVar2 = BinarySearchUIStringTable(extraout_ECX_00,0x9bb9ccc3);
+        }
+        (**(code **)(*piVar3 + 4))(iVar2,0,0x8ab83edb,0,0,5);
+      }
+    }
+  }
+  return;
+}
+
