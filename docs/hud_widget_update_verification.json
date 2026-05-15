@@ -1,0 +1,128 @@
+[
+  {
+    "name": "NitrousGauge",
+    "ctor": "0x59e260",
+    "vtbl": "0x8a20c4",
+    "dtor": "0x59e370",
+    "update": "0x568330",
+    "w9_candidate": "0x568330",
+    "match": true
+  },
+  {
+    "name": "RaceOverMessage",
+    "ctor": "0x59e0f0",
+    "vtbl": "0x8a20a4",
+    "dtor": "0x59e1b0",
+    "update": "0x57a4b0",
+    "w9_candidate": "0x59e190",
+    "match": false
+  },
+  {
+    "name": "GenericMessage",
+    "ctor": "0x59dee0",
+    "vtbl": "0x8a209c",
+    "dtor": "0x59e040",
+    "update": "0x567f80",
+    "w9_candidate": "0x567f80",
+    "match": true
+  },
+  {
+    "name": "TurboMeter",
+    "ctor": "0x5a0380",
+    "vtbl": "0x8a24c8",
+    "dtor": "0x5a0480",
+    "update": "0x57bb40",
+    "w9_candidate": "0x57bb40",
+    "match": true
+  },
+  {
+    "name": "Countdown",
+    "ctor": "0x59dd30",
+    "vtbl": "0x8a2080",
+    "dtor": "0x59de30",
+    "update": "0x5679b0",
+    "w9_candidate": "0x5679b0",
+    "match": true
+  },
+  {
+    "name": "TimeExtension",
+    "ctor": "0x5a0060",
+    "vtbl": "0x8a247c",
+    "dtor": "0x5a0120",
+    "update": "0x57b780",
+    "w9_candidate": "0x57baf0",
+    "match": false
+  },
+  {
+    "name": "Reputation",
+    "ctor": "0x59d2a0",
+    "vtbl": "0x8a1f78",
+    "dtor": "0x59d390",
+    "update": "0x5669b0",
+    "w9_candidate": "0x594a90",
+    "match": false
+  },
+  {
+    "name": "HeatMeterInRace",
+    "ctor": "0x59cec0",
+    "vtbl": "0x8a1f50",
+    "dtor": "0x59d010",
+    "update": "0x5666a0",
+    "w9_candidate": "0x5668d0",
+    "match": false
+  },
+  {
+    "name": "CostToState",
+    "ctor": "0x59d0c0",
+    "vtbl": "0x8a1f64",
+    "dtor": "0x59d1f0",
+    "update": "0x5668f0",
+    "w9_candidate": "0x59d1d0",
+    "match": false
+  },
+  {
+    "name": "PursuitBoardInRace",
+    "ctor": "0x59fc80",
+    "vtbl": "0x8a2468",
+    "dtor": "0x59ffb0",
+    "update": "0x57aee0",
+    "w9_candidate": "0x595af0",
+    "match": false
+  },
+  {
+    "name": "BustedMeter",
+    "ctor": "0x5a01d0",
+    "vtbl": "0x8a2484",
+    "dtor": "0x5a02d0",
+    "update": "0x568eb0",
+    "w9_candidate": null,
+    "match": false
+  },
+  {
+    "name": "MenuZoneTrigger",
+    "ctor": "0x5a0530",
+    "vtbl": "0x8a2524",
+    "dtor": "0x5a0660",
+    "update": "0x57bbc0",
+    "w9_candidate": "0x58c640",
+    "match": false
+  },
+  {
+    "name": "Infractions",
+    "ctor": "0x5a1380",
+    "vtbl": "0x8a268c",
+    "dtor": "0x5a1500",
+    "update": "0x569a50",
+    "w9_candidate": "0x569ac0",
+    "match": false
+  },
+  {
+    "name": "RadarDetector",
+    "ctor": "0x59cc30",
+    "vtbl": "0x8a1f3c",
+    "dtor": "0x59ce10",
+    "update": "0x566170",
+    "w9_candidate": "0x59cdf0",
+    "match": false
+  }
+]
