@@ -1,4 +1,6 @@
 name: CI
+# Thin caller — the CI logic (lint + build + test + coverage + security) lives in
+# s-b-repo/ci-automation (_reuse-ci-python.yml), so improvements there apply here automatically.
 on:
   push:
     branches: [main]
@@ -8,29 +10,5 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 jobs:
-  python:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.x'
-      - name: Install (best-effort)
-        run: |
-          python -m pip install -U pip
-          [ -f requirements.txt ] && pip install -r requirements.txt || true
-          { [ -f pyproject.toml ] || [ -f setup.py ] || [ -f setup.cfg ]; } && { pip install -e . || pip install . || true; } || true
-          pip install ruff pytest pip-audit || true
-      - name: Ruff lint (report-only)
-        run: ruff check . || true
-        continue-on-error: true
-      - name: Tests
-        run: |
-          if find . -path ./.git -prune -o -name 'test_*.py' -print -o -name '*_test.py' -print | grep -q . || [ -d tests ] || [ -d test ]; then
-            pytest -q
-          else
-            echo "No tests found; skipping pytest."
-          fi
-      - name: pip-audit (security, report-only)
-        run: pip-audit || true
-        continue-on-error: true
+  ci:
+    uses: s-b-repo/ci-automation/.github/workflows/_reuse-ci-python.yml@main
