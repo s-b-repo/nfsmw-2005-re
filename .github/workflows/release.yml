@@ -1,0 +1,96 @@
+name: Release
+
+# Automated per-change SemVer releases from Conventional Commits.
+# Added by s-b-repo CI automation. See .github/release/ for the logic.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      release_as:
+        description: "Force bump level (auto = derive from commits)"
+        required: false
+        default: "auto"
+        type: choice
+        options: [auto, patch, minor, major, none]
+      explicit_version:
+        description: "Force an exact version e.g. v1.4.0 (overrides release_as)"
+        required: false
+        default: ""
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  SYNC_MANIFEST: auto
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Compute next version
+        id: ver
+        run: |
+          force=""
+          ev='${{ github.event.inputs.explicit_version }}'
+          ra='${{ github.event.inputs.release_as }}'
+          if [ -n "$ev" ]; then force="$ev";
+          else case "$ra" in patch|minor|major|none) force="$ra" ;; esac; fi
+          out="$(bash .github/release/compute-release.sh "$force")"
+          echo "$out"
+          echo "$out" >> "$GITHUB_OUTPUT"
+
+      - name: No release needed
+        if: steps.ver.outputs.next_version == ''
+        run: echo "Nothing to release (bump=${{ steps.ver.outputs.bump }})."
+
+      - name: Configure git identity
+        if: steps.ver.outputs.next_version != ''
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Sync manifest version (best-effort)
+        if: steps.ver.outputs.next_version != '' && env.SYNC_MANIFEST != 'off'
+        run: |
+          v="${{ steps.ver.outputs.next_version }}"
+          changed="$(python3 .github/release/bump-manifest.py "${v#v}" 2>/dev/null || true)"
+          if [ -n "$changed" ]; then
+            echo "Bumped: $changed"
+            git add -A
+            git commit -m "chore(release): ${v} [skip ci]"
+            if ! git push origin "HEAD:${{ github.ref_name }}"; then
+              echo "::warning::manifest push rejected — releasing without the bump"
+              git reset --hard "origin/${{ github.ref_name }}"
+            fi
+          fi
+
+      - name: Tag and publish release
+        if: steps.ver.outputs.next_version != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          v="${{ steps.ver.outputs.next_version }}"
+          prev="${{ steps.ver.outputs.prev }}"
+          if git rev-parse "$v" >/dev/null 2>&1; then
+            echo "::error::tag $v already exists"; exit 1
+          fi
+          python3 .github/release/release-notes.py "$prev" > notes.md
+          if [ "$prev" != "none" ] && [ -n "$prev" ]; then
+            { echo; echo "**Full Changelog**: ${{ github.server_url }}/${{ github.repository }}/compare/${prev}...${v}"; } >> notes.md
+          fi
+          git tag -a "$v" -m "$v"
+          git push origin "refs/tags/$v"
+          gh release create "$v" --title "$v" --notes-file notes.md --latest --verify-tag
+          echo "Released $v"

@@ -1,0 +1,16 @@
+# GitHub auto-generated release-notes config (used as a fallback / for PR repos).
+changelog:
+  exclude:
+    labels: [ignore-for-release]
+    authors: [github-actions, github-actions[bot], dependabot, dependabot[bot]]
+  categories:
+    - title: 🚀 Features
+      labels: [feature, feat, enhancement]
+    - title: 🐛 Fixes
+      labels: [fix, bug, bugfix]
+    - title: 🔒 Security
+      labels: [security]
+    - title: 📚 Documentation
+      labels: [docs, documentation]
+    - title: 🧰 Maintenance & other changes
+      labels: ["*"]
